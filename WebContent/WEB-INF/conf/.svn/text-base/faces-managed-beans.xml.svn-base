@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+
+	<!--APARTADO PARA LOS FORM -->
+	<managed-bean>
+		<managed-bean-name>catalogoForm</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.form.CatForm</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+
+	<!--APARTADO PARA CONTROLLERS 
+		<managed-bean>
+		<managed-bean-name>loginForm</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.login.presentacion.form.LoginForm</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>loginController</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.login.presentacion.controller.LoginController</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>loginForm</property-name>
+			<value>#{loginForm}</value>
+		</managed-property>
+	</managed-bean>
+-->
+
+</faces-config>

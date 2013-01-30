@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+<head>
+	<title>Administrador de usuarios</title>
+	
+</head>
+	  <ui:composition template="../template/layout.xhtml">
+			<ui:define name="body">
+				<f:view>
+					<a4j:form id="login" style="background-color: #e6dfb5;" ajaxSubmit="true" >
+					  	<f:loadBundle basename="messages" var="msg" />
+					  	<script type="text/javascript">
+            			var row;
+       					 </script>
+		<body>
+		     
+        	<table>
+        	<tr></tr><tr></tr>
+        	<tr></tr><tr></tr>
+		  	<tr></tr><tr></tr>
+        	
+        	</table>
+				<table border="0" width="900">
+		  	<tr></tr><tr></tr>
+		  	<tr></tr><tr></tr>
+		  	<tr>
+		  	<td width="135">
+					<h:outputLabel value="Tipo Usuario" style="FONT-SIZE:small;"/>
+				
+			</td>
+			<td width="165">
+					<h:selectOneMenu  id="comboTipoUsuarios" value="#{aduController.aduForm.tipoUsuario}" style="width: 97%;">
+		 				<f:selectItems value="#{aduController.aduForm.comboTipoUsuario}"/>
+		 				<a4j:support event="onchange"
+		 							 action="#{aduController.ocultar}"
+           				  			 ajaxSingle="true"
+           				  			 reRender="del,comboDelegacion,uni,comboUnidad,rdUni,rdDel,grupos,pUnicos,chLau,lau,chAud,aud,chJa,ja"/>
+           			</h:selectOneMenu>
+				</td>
+						  	<td width="135">
+					<h:outputLabel id="del" value="Delegacion" style="FONT-SIZE:small; display:#{aduController.oculComboDel};"/>
+				
+			</td>
+							<td width="165">
+					<h:selectOneMenu  id="comboDelegacion" value="#{aduController.aduForm.tipoUsuario}" style="width: 97%; display:#{aduController.oculComboDel};">
+		 				<f:selectItems value="#{aduController.aduForm.comboTipoUsuario}"/>
+		 				
+           			</h:selectOneMenu>
+				</td>
+				<td width="135">
+					<h:outputLabel id="uni" value="Unidad" style="FONT-SIZE:small; display:#{aduController.oculComboUni};"/>
+				
+			</td>
+											<td width="165">
+					<h:selectOneMenu  id="comboUnidad" value="#{aduController.aduForm.tipoUsuario}" style="width: 97%; display:#{aduController.oculComboUni};">
+		 				<f:selectItems value="#{aduController.aduForm.comboTipoUsuario}"/>
+		 				
+           			</h:selectOneMenu>
+				</td>
+				</tr>
+				</table>
+				
+				<!-- Componentes de nivel central -->
+			<table border="0" width="900">
+			<tr>
+
+				<td width="14%">
+				<h:outputLabel value="Perfiles" style="FONT-SIZE:small;"/>
+				</td>
+				
+				<td width="90%">
+						<table border="0" width="266">
+						<tr>
+							<td>
+								 	<h:selectOneRadio  id="rdUni" value="x"  style="FONT-SIZE:small; display:#{aduController.oculcheDel};">						
+							    		<f:selectItem itemValue="AAC" itemLabel="AAC"/>     						
+							    		<f:selectItem itemValue="CCN " itemLabel="CCN"/>  
+							    		<f:selectItem itemValue="UDL " itemLabel="UDL"/>    						
+									</h:selectOneRadio> 
+
+		 							
+		 					</td></tr>
+		 					
+		 					<tr><td>
+		 							<h:selectOneRadio  id="rdDel" value="x"  style="FONT-SIZE:small; display:#{aduController.oculComboUni};">						
+							    		<f:selectItem itemValue="ACT" itemLabel="ACT"/>     						
+							    		<f:selectItem itemValue="TCT " itemLabel="TCT"/>    						
+									</h:selectOneRadio> 
+									
+		 					</td></tr>
+							<tr>
+							<td>
+							<table border="0">
+						
+								<tr>
+								<td>
+								<table>
+								<h:selectOneRadio  id="grupos" value="#{aduController.aux}"  style="FONT-SIZE:small; display:#{aduController.oculGrupPerfil};">  
+								<f:selectItem itemValue="#{aduController.blok2}" itemLabel="Perfiles únicos " />
+										<a4j:support event="onclick"
+				 						action="#{aduController.controlBloqueo}"
+				 						ajaxSingle="true"
+				 						reRender="pUnicos,chLau,chAud,chJa"/>
+				 				<f:selectItem itemValue="#{aduController.blok1}" itemLabel="Perfiles combinados "   />
+										<a4j:support event="onclick"
+				 						action="#{aduController.controlBloqueo}"
+				 						ajaxSingle="true"
+				 						reRender="pUnicos,chLau,chAud,chJa"/>
+								</h:selectOneRadio> 
+								</table>
+								<table>
+								<tr>
+								
+								<td>
+									<h:selectOneRadio  id="pUnicos" value="x"  disabled="#{aduController.var1}" style="FONT-SIZE:medium; display:#{aduController.oculradPerfil};">						
+							    		<f:selectItem itemValue="UCS" itemLabel="UCS" />     						
+							    		<f:selectItem itemValue="JD " itemLabel="JD"/>     						
+							    		<f:selectItem itemValue="CSDC" itemLabel="CSDC"/>      						
+									</h:selectOneRadio> 
+									</td>
+									</tr>
+								</table>
+								<table>
+								<tr>
+								<td></td>
+								<td>
+									<h:selectBooleanCheckbox
+					 				title="lider" id="chLau"
+					  				value="#{aduController.aduForm.valueLau}" disabled="#{aduController.var2}" style="FONT-SIZE:small; display:#{aduController.oculchePerfil};"  >
+									</h:selectBooleanCheckbox>
+									<h:outputText value=" LAU " id="lau" style="FONT-SIZE:x-small; display:#{aduController.oculchePerfil};"/>
+
+									<h:selectBooleanCheckbox
+					 				title="auditor" id="chAud"
+					  				value="#{aduController.aduForm.valueAud}" disabled="#{aduController.var2}" style="FONT-SIZE:small; display:#{aduController.oculchePerfil};" >
+									</h:selectBooleanCheckbox>
+									<h:outputText value=" AUD " id="aud" style="FONT-SIZE:x-small; display:#{aduController.oculchePerfil};"/>
+
+									<h:selectBooleanCheckbox
+					 				id="chJa" title="jefearea"
+					  				value="#{aduController.aduForm.valueJa}" disabled="#{aduController.var2}" style="FONT-SIZE:small; display:#{aduController.oculchePerfil};">
+									</h:selectBooleanCheckbox>
+									<h:outputText value=" JA " id="ja" style="FONT-SIZE:x-small; display:#{aduController.oculchePerfil};"/>		
+									</td>
+									</tr>					
+								
+								</table>
+							</td>
+
+					
+
+					 	
+							</tr>
+								</table>
+								</td>
+							</tr>
+							
+							
+						</table>
+				</td>
+			</tr>
+			</table>
+<!-- fin -->
+
+			<table border="0" width="900">
+			<tr></tr><tr></tr>
+			<tr></tr><tr></tr>
+				<tr>
+				<td width="15%">
+					<h:outputLabel value="Apellido Paterno" style="FONT-SIZE:small;"/>
+				</td>
+				<td>
+					<h:inputText id="apPaterno" value="#{aduController.aduForm.apPaterno}" style="width: 97%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="apPaterno" />
+				</td>
+				<td width="15%">
+					<h:outputLabel value= "Apellido Materno" style="FONT-SIZE:small;"/>		
+				</td>
+				<td>
+				<h:inputText id="apMaterno" value="#{aduController.aduForm.apMaterno}" style="width: 97%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="apMaterno" />
+				</td>
+				<td width="15%">
+					<h:outputLabel value= "Nombre" style="FONT-SIZE:small;" />		
+				</td>
+				<td>
+				<h:inputText id="nombre" value="#{aduController.aduForm.nombre}" style="width: 97%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="nombre" />
+				</td>	
+				</tr>
+			</table>	
+			<table border="0" width="900">
+		  	<tr></tr><tr></tr>
+		  		<tr>
+		  		<td width="15%">
+					<h:outputLabel value="Categoria" style="FONT-SIZE:small;"/>
+				</td>
+		  		<td>
+		  	
+					<h:selectOneMenu  id="comboCategorias" value="#{aduController.aduForm.categoria}" style="width: 20%" >
+		 				<f:selectItems value="#{aduController.aduForm.comboCategorias}"/>
+           			</h:selectOneMenu>
+				</td>
+				
+				</tr>
+	
+			</table>			
+			<table border="0" width="900">
+			<tr></tr><tr></tr>
+		  		<tr>
+		  		<td width="15%">
+				<h:outputLabel value="Puesto" style="FONT-SIZE:small;"/>
+				</td>
+		  		<td>
+		  		<h:selectOneMenu  id="comboPuestos" value="#{aduController.aduForm.puesto}" style="width: 20%">
+		 				<f:selectItems value="#{aduController.aduForm.comboPuestos}"/>
+           		</h:selectOneMenu>
+				</td>
+				</tr>
+			</table>
+		  	<table border="0" width="900">
+		  	<tr></tr><tr></tr>
+				<tr>
+				<td width="15%">
+					<h:outputLabel value= "Lada" style="FONT-SIZE:small;"/>		
+				</td>
+				<td>
+					<h:inputText id="lada" value="#{aduController.aduForm.lada}" style="width: 97%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="lada" />
+				</td>
+			
+				<td width="15%">
+					<h:outputLabel value= "Telefono" style="FONT-SIZE:small;"/>		
+				</td>
+				<td>
+				<h:inputText id="tel" value="#{aduController.aduForm.telefono}" style="width: 97%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="tel" />
+				</td>
+			
+			
+				<td width="15%">
+					<h:outputLabel value= "Extension" style="FONT-SIZE:small;"/>		
+				</td>
+				<td>
+				<h:inputText id="ext" value="#{aduController.aduForm.extension}" style="width: 97%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="ext" />
+				</td>
+			
+				</tr>
+				</table>
+				<table border="0" width="900">
+				<tr></tr><tr></tr>
+				<tr>
+				<td width="15%">
+					<h:outputLabel value= "Correo electronico" style="FONT-SIZE:small;"/>		
+				</td>
+				<td>
+				<h:inputText id="correo" value="#{aduController.aduForm.correoE}" style="width: 20%">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="correo" />
+				</td>
+				</tr>
+		  	</table>
+		  	<table border="0" width="900">
+		  	<tr></tr><tr></tr>
+		  	<tr></tr><tr></tr>
+		  	<tr></tr><tr></tr>
+		  	<tr>
+		  	<td>
+		  	<h:commandButton action="save" value="Guardar"/>
+		  	<a4j:commandButton type="submit" value="Cancelar"  action="#{aduController.retornaPanelAdministrador}" />
+		  	</td>
+		  	
+		  	    <h:panelGrid columns="1" cellspacing="10">		
+				
+			</h:panelGrid>	
+		  	
+		  	</tr>
+		  	
+		  	<tr></tr><tr></tr>
+		  	<tr></tr><tr></tr>
+		  </table>
+
+				</body>
+				</a4j:form>
+			</f:view>
+		</ui:define>
+	</ui:composition>
+</html>

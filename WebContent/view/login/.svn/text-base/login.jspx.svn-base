@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+<head>
+<title>Login</title>
+</head>
+<f:view>
+	
+	<a4j:form id="login" style="background-color: #e6dfb5;" ajaxSubmit="true" >
+	  <f:loadBundle basename="messages" var="msg" />
+	 
+	   <table width="100%" align="center" >
+	  	<tr align="center" >
+	  	<td>
+	  	<img align="middle" width="40%" src="../../images/cabecera.jpg" />
+	  	</td>
+	  	</tr>
+	  	<tr align="center">
+	  		<td >
+	  		<img width="40%" align="middle" src="../../images/portada.jpg" />
+	  		</td>
+	  	</tr>
+	  </table>
+	 
+	  <table  width="40%" style="background-color: threedlightshadow;" align="center">
+	   <tr align="center">
+	   	<td colspan="2" width="100%" align="center">
+	   		
+     		 <rich:message   for="j_username"/>
+     	</td>
+      </tr>
+      <tr align="center">
+	   	<td colspan="2" width="100%" align="center">
+     		 <rich:message  for="j_password"/>
+      	</td>
+      </tr>
+       <tr align="center">
+       		<td colspan="2" width="100%" align="center">
+       			<c:if test="${not empty param.authfailed}">
+  				  <span id="infomessage" class="errormessage" >
+    				Fallo Login: <h:outputLabel value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
+   				 </span>
+			</c:if>
+		</td>
+	</tr>
+	  	<tr  align="center">
+	  		<td width="100%" align="center">
+	  		<fieldset>
+	  		<h:panelGroup>
+					<h:outputLabel style="font-family: serif;" value="#{msg.usuario}">
+					</h:outputLabel>
+					<h:inputText  id="j_username" required="true" value="#{loginController.loginForm.usuario}"  requiredMessage="Usuario Obligatorio" >
+					</h:inputText>
+			</h:panelGroup>
+			</fieldset>
+			</td>
+		</tr>
+		<tr align="center">
+			<td width="100%" align="center">
+			<fieldset>
+				<h:panelGroup>
+					<h:outputLabel style="font-family: serif;" value="#{msg.password}">
+					</h:outputLabel>
+					<h:inputSecret id="j_password" value="#{loginController.loginForm.contrasena}"   required="true" requiredMessage="Password Obligatorio" >
+					</h:inputSecret>
+			</h:panelGroup>
+			</fieldset>
+			</td>
+	  	</tr>
+	  	<tr align="center">
+			<td width="100%" align="center">
+			
+			
+				<h:panelGroup>
+						<a4j:commandButton  type="submit"  action="#{loginController.validarLogin}" value="#{msg.ingresar}"/>
+			</h:panelGroup>
+			
+			</td>
+	  	</tr>
+	  </table>
+		
+	</a4j:form>
+	</f:view>
+</html>

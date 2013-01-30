@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core" lang="en">
+
+<head>
+<script src="../../js/funciones.js" type="text/javascript"></script>
+<title>SSCD</title>
+<!-- Todas las paginas deben tener esta linea para que las tildes funcionen -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+	<table width="100%" align="center" cellpadding="0" cellspacing="0">
+		<!--DWLayoutTable-->
+		<tr align="center">
+			<td valign="top"><img width="100%"
+				src="../../images/cabecera.jpg" />
+			</td>
+		</tr>
+
+
+		<h:form>
+			<f:view>
+				<f:loadBundle basename="messages" var="msg" />
+				<rich:toolBar>
+
+					<!--***************** MENU ADMIN ****************** -->
+
+					<c:forEach items="#{menuController.listMenu}" var="list">
+            		 	<rich:dropDownMenu styleClass="menuTop">
+           					 <f:facet name="label">
+            					 <h:panelGroup>
+            						  <h:outputText value="#{list.descripcionMenu}" />
+            					 </h:panelGroup>
+            				</f:facet>
+            		<c:forEach items="#{list.subMenu}" var="hijos">
+          				  <rich:menuGroup value="#{hijos.descripcionSubMenu}">
+          			</rich:menuGroup>
+          			</c:forEach>
+            			</rich:dropDownMenu>
+            		</c:forEach>
+
+					<table align="right">
+						<tr align="right">
+							<h:panelGrid>
+								<h:commandButton immediate="true"
+									actionListener="#{loginController.validarLogout}"
+									image="../../images/Exit.png" value="Salir" />
+							</h:panelGrid>
+						</tr>
+
+					</table>
+
+				</rich:toolBar>
+			</f:view>
+		</h:form>
+
+	</table>
+</body>
+</html>

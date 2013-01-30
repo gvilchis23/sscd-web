@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+<head>
+<title>SERVICIOS</title>
+</head>
+
+ <ui:composition template="../template/layout.xhtml">
+<ui:define name="body">
+<f:view>
+   	<a4j:form id="form" style="background-color: #e6dfb5 " ajaxSubmit="true" >
+	  <f:loadBundle basename="messages" var="msg" />
+	  <body > 
+	  <table width="900"  >
+	<tr>
+		<td width="18%">		</td>
+		<td width="82%">
+			<table width="100%" >
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.delegacion}"/></td>
+					<td width="21%"><h:outputText id="delegacion" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.unidad}"/></td>
+					<td></td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.ventanilla}"/></td>
+					<td width="21%"><h:outputText id="tipoVentanilla" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.turno}"/></td>
+					<td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	  <table  width="1000" style="margin-top: 2%"  >
+	<tr>
+		<td width="15%">
+			<table width="100%"  style="margin-top: -100%" >
+				<tr>
+					<td width="100%" >
+						 <ui:include src="../edc/menuNavegacion.jspx"/>  
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="85%">
+	  <table width="100%" cellpadding="5" >
+	  	<tr><td></td></tr>
+	  	<tr><td></td></tr>
+	  			<tr>
+	  				<td width="20%">
+	  					<h:outputLabel value="#{msg.categoria}"/>
+	  				</td>
+	  				<td width="20%">
+	  					<h:selectOneMenu  id="comboCategoriaServicio" disabled="#{serviciosController.datoDisable}" value="#{serviciosController.cdvServiciosForm.datoCategoriaServicio}" style="width: 90%">
+		 					<f:selectItems  value="#{serviciosController.comboCategoriaServicios}" />
+		 					 <a4j:support  
+       						 event="onchange"  
+      					 	 actionListener="#{serviciosController.eventoComboServicio}" ajaxSingle="true"
+      					 	  reRender="comboServicio, menuServicios"/> 
+		 				</h:selectOneMenu>
+	  				</td>
+	  				<td width="20%">
+	  					<h:outputLabel value="#{msg.servicio}"/>
+	  				</td>
+	  				<td width="20%">
+	  					<h:selectOneMenu  id="comboServicio"   value="#{serviciosController.cdvServiciosForm.datoServicio}" style="width: 90%">
+		 					<f:selectItems  value="#{serviciosController.comboServicios}" />
+		 				</h:selectOneMenu>
+	  				</td>
+	  				<td></td>
+	  			</tr>
+	  			<tr><td></td></tr>
+	  			<tr>
+	  				<td>
+	  					<h:outputLabel value="#{msg.resultadoservicio}"/>
+	  				</td>
+	  				<td>
+	  					<h:selectOneMenu  id="comboResultadoServicio"   value="#{serviciosController.cdvServiciosForm.datoResultadoServicio}" style="width: 90%">
+		 					<f:selectItems  value="#{serviciosController.comboResultadoServicios}" />
+		 				</h:selectOneMenu>
+	  				</td>
+	  			</tr>
+	  			<tr><td></td></tr>
+	  			<tr><td></td></tr>
+	  		</table>
+    		<table width="100%" cellpadding="5" >
+    			<tr>
+    				<td style="width: 20%">
+    					<h:outputLabel value="#{msg.seleccionados}"/>
+    				</td>
+    				<td style="width: 20%">
+    					<h:commandButton id="botonRequisitos" onclick="Richfaces.showModalPanel('seleccionarRequisitos')" value="#{msg.seleccionar}" style="width: 90%">
+						 <a4j:support  
+       					 event="onmousedown"  
+      					  actionListener="#{serviciosController.llenarPickList}" ajaxSingle="true"
+      					   reRender="pickRequisitos,tableRequisitos"/>
+      					  </h:commandButton> 
+    				</td>
+    				<td style="width: 20%">
+    					<h:outputLabel value="#{msg.medios}"/>
+    				</td>
+    				<td style="width: 20%">
+    					<h:commandButton id="botonMedios" onclick="Richfaces.showModalPanel('seleccionarDifusion')" value="#{msg.seleccionar}" style="width: 90%">
+						 <a4j:support  
+       					 event="onmousedown"  
+      					  actionListener="#{serviciosController.llenarPickListDifusion}" ajaxSingle="true"
+      					   reRender="pickDifusion"/>
+      					  </h:commandButton>
+    				</td>
+    				<td></td>
+    			</tr>
+    			<tr></tr>
+    			<tr></tr>
+    			<tr></tr>
+    		</table>
+     	<h:panelGrid  columns="2" cellspacing="20">
+				<h:panelGroup>
+					 <rich:panel id="result" styleClass="pbody">
+						 <rich:dataList id="listaPick" value="#{serviciosController.listaVo}" var="lista"> 
+                 			   <h:outputText value="#{lista.requisito}"/>
+           				 </rich:dataList> 
+           			 </rich:panel>
+     			</h:panelGroup>
+     			<h:panelGroup>
+					 <rich:panel id="resultMe" styleClass="pbody">
+						 <rich:dataList id="listaPickMedios" value="#{serviciosController.listaMediosVo}" var="lista"> 
+                 			   <h:outputText value="#{lista.requisito}"/>
+           				 </rich:dataList> 
+           			 </rich:panel>
+     			</h:panelGroup>
+     	</h:panelGrid>
+     		<table width="100%" cellpadding="5" >
+     			<tr>
+     				<td width="45%"></td>
+     				<td width="10%" align="center">Horas</td>
+    				<td width="10%" align="center">Minutos</td>
+    				<td width="10%" align="center">Segundos</td>
+    				<td width="25%"></td>
+     			</tr>
+     			<tr>
+     				<td>
+     					<h:outputLabel value="#{msg.labelespera}"/>
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboHoraEspera" value="#{serviciosController.cdvServiciosForm.datoHoraEspera}" maxValue="15" minValue="0"  requiredMessage="Campo obligatorio" style="width: 15px" />
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboMinEspera" value="#{serviciosController.cdvServiciosForm.datoMinEspera}" maxValue="59" minValue="0"  requiredMessage="Campo obligatorio" style="width: 15px" />
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboSegEspera" value="#{serviciosController.cdvServiciosForm.datoSegEspera}" maxValue="59" minValue="0"  requiredMessage="Campo obligatorio" style="width: 15px" />
+     				</td>
+     				<td></td>
+     			</tr>
+     			<tr>
+     				<td><h:outputLabel value="#{msg.labelatencion}"/></td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboHoraAtencion" value="#{serviciosController.cdvServiciosForm.datoHoraAtencion}" maxValue="15" minValue="0"  requiredMessage="Campo obligatorio"/>
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboMinAtencion" value="#{serviciosController.cdvServiciosForm.datoMinAtencion}" maxValue="59" minValue="0"  requiredMessage="Campo obligatorio"/>
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboSegAtencion" value="#{serviciosController.cdvServiciosForm.datoSegAtencion}" maxValue="59" minValue="0"  requiredMessage="Campo obligatorio"/>
+     				</td>
+     				<td></td>
+     			</tr>
+     			<tr>
+     				<td><h:outputLabel value="#{msg.labelpromedio}"/></td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboHoraPromedio" value="#{serviciosController.cdvServiciosForm.datoHoraPromedio}" maxValue="15" minValue="0"  requiredMessage="Campo obligatorio"/>
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboMinPromedio" value="#{serviciosController.cdvServiciosForm.datoMinPromedio}" maxValue="59" minValue="0"  requiredMessage="Campo obligatorio"/>
+     				</td>
+     				<td>
+     					<rich:inputNumberSpinner id="comboSegPromedio" value="#{serviciosController.cdvServiciosForm.datoSegPromedio}" maxValue="59" minValue="0"  requiredMessage="Campo obligatorio"/>
+     				</td>
+     				<td></td>
+     			</tr>
+     			<tr><td></td></tr>
+     			<tr>
+     				<td><h:outputLabel value="#{msg.labelatendidos}"/></td>
+     				<td>
+     					<h:inputText id="inputAtendidos"  value="#{serviciosController.cdvServiciosForm.atendidos}" style="width: 100%"/>
+     				</td>
+     			</tr>
+     		</table>
+     	<h:panelGrid  columns="1" cellspacing="20">
+     		<h:panelGroup>
+					<a4j:commandButton value="#{msg.guardarserv}"  reRender="comboServicio,comboResultadoServicio,pickRequisitos,tableRequisitos,pickDifusion,
+					listaPick,listaPickMedios,comboHoraEspera,comboMinEspera,comboSegEspera,menuServicios,
+					comboHoraAtencion,comboMinAtencion,comboSegAtencion,comboHoraPromedio,
+					comboMinPromedio,comboHoraPromedio,inputAtendidos,comboCategoriaServicio,tableCdv" action="#{serviciosController.guardarCdvServicios}"  />
+     			</h:panelGroup>
+     	</h:panelGrid>
+       <a4j:region >
+     <table width="50%" >
+     	<tr>
+     		<td>
+     			<rich:toolBar height="26" itemSeparator="grid">
+      				<rich:toolBarGroup location="right">
+      						        				    
+      					<a4j:commandButton reRender="tableCdv" action="#{serviciosController.llenarTablaCdvServicio}" image="../../images/refresh.png"/>  
+      					<a4j:commandButton reRender="tableCdv" actionListener="#{serviciosController.eliminarCdvServicio}" image="../../images/Exit.png"/>  
+      				</rich:toolBarGroup>
+      			</rich:toolBar>
+     		</td>
+     	</tr>
+     	<tr>
+     		<td align="center">
+     			 <rich:dataTable width="50%"  id="tableCdv" binding="#{serviciosController.backingTable.tableBinding}" var="lista" value="#{serviciosController.listaCdv}">
+					 <rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.sel}"/>
+						</f:facet>
+						<h:selectOneRadio  value="#{lista.seleccion}">  
+    						<f:selectItem itemValue="1" itemLabel="" />  
+						</h:selectOneRadio> 
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.encaservicio}"/>
+						</f:facet>
+							<h:outputText value="#{lista.nombreServicio}" />
+				 	</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.encapromedio}"/>
+						</f:facet>
+							<h:outputText value="#{lista.datoHoraPromedio}:#{lista.datoMinPromedio}:#{lista.datoSegundosPromedio}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.encaespera}"/>
+						</f:facet>
+							<h:outputText value="#{lista.datoHoraEspera}:#{lista.datoMinEspera}:#{lista.datoSegundosEspera}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.encaatencion}"/>
+						</f:facet>
+							<h:outputText value="#{lista.datoHoraAtencion}:#{lista.datoMinAtencion}:#{lista.datoSegundosAtencion}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.encausuarios}"/>
+						</f:facet>
+							<h:outputText value="#{lista.atendidos}" />
+					</rich:column> 
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg.editar}"/>
+						</f:facet>
+					<a4j:commandButton id="botonEditar" reRender="comboServicio,comboCategoriaServicio,
+					comboResultadoServicio,listaPick,listaPickMedios,
+					radio,pickRequisitos,tableRequisitos,pickDifusion" action="#{serviciosController.editarServicios}"  image="../../images/edit.png" /> 
+
+					</rich:column>	
+						
+				</rich:dataTable> 
+     		</td>
+     	</tr>
+     </table>
+     	</a4j:region> 
+     	<table border="1" align="right" style="margin-top: 10%" cellpadding="5%">
+     	<tr>
+     		<td>
+     			<a4j:commandButton id="botonAtras" value="#{msg.atras}" action="#{serviciosController.serviciosRetroceder}" />
+     		</td> 
+     		<td>
+     			<a4j:commandButton id="botonSiguiente" value="#{msg.siguiente}" action="#{serviciosController.serviciosAvanzar}" />
+     		</td>
+     	</tr>
+     </table>
+     	</td>
+     	</tr>
+     	</table>
+	  </body> 
+	</a4j:form>
+	<ui:include src="../edc/modalCdv.jspx"/>
+	</f:view>
+ </ui:define>
+</ui:composition>
+</html>

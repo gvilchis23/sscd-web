@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+<title>Perfiles</title>
+</head>
+
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+			<f:view>
+			<a4j:form id="form" ajaxSubmit="true">
+				<f:loadBundle basename="messages" var="msg" />
+				<div class="rich-toolbar">Perfiles</div>
+				<div id="contenedor">
+				<div id="menuNavegacion">
+				<ui:include src="../edc/menuNavegacion.jspx" />
+				</div>
+				<div id="cabecera">
+				<ui:include src="../edc/cabeceraDatosGenerales.jspx" />
+				
+					<div id="contenido">
+						
+							
+									<rich:panel header="Perfiles" style="width: 800">
+										
+														<table border="1">
+															<tr>
+																<td colspan="9"><h:outputLabel
+																		value="Ingrese los Perfiles del personal de la ventanilla" />
+																</td>
+															</tr>
+														
+															<tr>
+																<td valign="bottom"><h:outputLabel value="Escolaridad:" />
+																</td>
+																
+																<td valign="bottom"><h:selectOneMenu id="combo"
+																		value="padController.padForm.tipo">
+																		<f:selectItems
+																			value="#{padController.panelForm.comboAnio}" />
+
+																	</h:selectOneMenu></td>
+																	<td></td>
+																	<td  valign="bottom"><h:outputLabel
+															value="Tiempo de experiencia en trato al público" /></td>
+															<td></td>
+															<td valign="bottom">
+															<h:outputLabel value="Año:" />
+															<h:selectOneMenu id="comboAnio" value="padController.padForm.tipo">
+															<f:selectItems value="#{padController.panelForm.comboAnio}" />
+															</h:selectOneMenu>
+															</td>
+															<td></td>
+															<td valign="bottom">
+															<h:outputLabel value="Mes:" />
+															<h:selectOneMenu id="comboMes" value="padController.padForm.tipo">
+															<f:selectItems value="#{padController.panelForm.comboMes}" />
+															</h:selectOneMenu>
+															</td>
+															
+
+															</tr>
+															
+															<tr>
+																<td><h:outputLabel
+																		value="Cursos especificos para la actividad que realiza" />
+																</td>
+
+															</tr>
+																														
+															<tr>
+																<td colspan="3"><h:inputTextarea
+																		style="width: 335px; height: 97px" value="Prueba">
+
+																	</h:inputTextarea>
+																</td>
+																<td></td>
+																<td width="130" valign="bottom"><h:panelGroup>
+																		<a4j:commandButton id="generarInformeAdm"
+																			style="width:120px;height:24px;"
+																			reRender="tablaPanelAdministrador"
+																			value="Seleccionar Cursos"
+																			actionListener="#{padController.generarInforme}" />
+																	</h:panelGroup>
+																</td>
+																<td valign="bottom">
+							<a4j:region>
+								<a4j:commandButton id="btnAutorizarCambiosPad"  style="width:120px;height:24px;"
+									value="Ingresar Perfil"
+									oncomplete="Richfaces.showModalPanel('autorizarCambiosPad')"></a4j:commandButton>
+							</a4j:region>
+						</td>
+															</tr>
+															</table>
+												
+													<ui:include src="../edc/tablaPerfiles.jspx" />
+													
+
+												<table align="right" border="1">
+																							<tr>
+												
+												<td width="130"><h:panelGroup>
+													<a4j:commandButton id="atras"
+														style="width:120px;height:24px;"
+														
+														value="Atras"
+														actionListener="#{padController.generarInforme}" />
+													</h:panelGroup>
+												</td>
+												<td width="130"><h:panelGroup>
+													<a4j:commandButton id="siguiente"
+														style="width:120px;height:24px;"
+														
+														value="Siguiente"
+														actionListener="#{padController.generarInforme}" />
+													</h:panelGroup>
+												</td>
+												<td valign="bottom"><h:panelGroup>
+													<a4j:commandButton id="salir"
+														style="width:120px;height:24px;"
+														
+														value="Salir"
+														actionListener="#{padController.generarInforme}" />
+													</h:panelGroup>
+												</td>
+												</tr>
+											</table>
+									
+											
+										</rich:panel>
+									</div>
+								</div>
+							</div>
+				
+			</a4j:form>
+			
+		</f:view>	
+	</ui:define>
+</ui:composition>
+</html>

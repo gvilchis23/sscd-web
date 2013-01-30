@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+<script type="text/javascript">
+ //<![CDATA[
+ function mostrarPanelTipoCarga(obj) {
+ 	if(obj.value=='2')
+ 	{ 		
+ 		document.getElementById('trPanelCVD_E').style.display='block';	
+ 	}else{
+ 		document.getElementById('trPanelCVD_E').style.display='none';
+ 	}
+ }
+ //]]>
+</script>
+
+
+</head>
+<body>
+<rich:modalPanel id="mpnNuevoProcCarga" autosized="true" width="390" height="280">
+		<f:facet name="header" >
+			<h:outputText value="Nuevo Proceso de Carga" />
+		</f:facet>
+		<rich:panel>
+		<a4j:form id="modalNuevoProcCarga" ajaxSubmit="true" >
+			<table align="center">
+				<tr>
+					<td><h:outputText id="otxtTipoCarga" value="Tipo de Carga" /></td>
+					<td><h:selectOneMenu id="comboTipoCarga"
+							value="#{pdcController.pdcForm.tipoNuevo}">
+							<f:selectItems value="#{pdcController.pdcForm.comboTipo}" />
+							<a4j:support event="onchange" ajaxSingle="true" 
+								action="#{pdcController.mostrarSeleccionCDVs}"
+					 			oncomplete="mostrarPanelTipoCarga(this);" reRender="pnlCDVs">
+							</a4j:support>
+						</h:selectOneMenu></td>					
+				</tr>
+				<tr id="trPanelCVD_E" style="display:none">
+					<td colspan="2">
+						<rich:panel id="pnlCDVs" header="Seleccionar CDVs">	
+							<table align="center">
+								<tr>	
+									<td><h:outputText id="otxtAnio" value="Año" /></td>
+									<td>
+										<h:selectOneMenu id="comboAnioNuevo" value="#{pdcController.pdcForm.anioNuevo}"> 
+										<f:selectItems  value="#{pdcController.pdcForm.comboAnioNuevoPC}" />											
+ 											<a4j:support event="onchange" action="#{pdcController.cargarListaCDV}"
+         				  			 				 reRender="pickCDVs" ajaxSingle="true"/>
+   		   								</h:selectOneMenu>
+									</td>																				
+								</tr>
+							</table>
+							<h:panelGroup>
+							<rich:pickList id="pickCDVs"
+											value="#{pdcController.pdcForm.listaCdvsSeleccionadas}"
+											removeAllControlLabel="#{msg.pickQuitarTodas}"
+											removeControlLabel="#{msg.pickQuitar}"
+											copyAllControlLabel="#{msg.pickAgregarTodas}"
+											copyControlLabel="#{msg.pickAgregar}">	
+											<f:selectItems value="#{pdcController.pdcForm.listaCdvs}" />			
+										</rich:pickList>
+							</h:panelGroup>
+							</rich:panel>
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputText id="otxtFecIni" value="Fecha de Inicio" /></td>
+					<td><rich:calendar id="calFecIni" value="#{pdcController.pdcForm.fechaIni}" popup="true" 
+					          datePattern="d/M/yy" showApplyButton="true" cellWidth="24px" 
+					          cellHeight="22px" style="height:70px;width:180px">
+					          <a4j:support event="onchanged" 
+					             action="#{pdcController.obtenerListaDiasFestivosPeriodo}" ajaxSingle="false" reRender="itxtDesc,itxtNroDias,listaDiasFestivosPeriodo" />
+					    </rich:calendar>
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputText id="otxtFecFinal" value="Fecha Final" /></td>
+					<td><rich:calendar id="calFecFinal" value="#{pdcController.pdcForm.fechaFinal}" popup="true" 
+					        datePattern="d/M/yy" showApplyButton="true" cellWidth="24px" cellHeight="22px" 
+					        style="height:70px;width:180px">
+					        <a4j:support event="onchanged" 
+					             action="#{pdcController.obtenerListaDiasFestivosPeriodo}" ajaxSingle="false" reRender="listaDiasFestivosPeriodo,itxtNroDias" />					        
+					    </rich:calendar>
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputText id="otxtDesc" value="Descripción" /></td>
+					<td><h:inputText id="itxtDesc" value="#{pdcController.pdcForm.descripcion}" disabled="true"/></td>
+				</tr>
+				<tr>
+					<td><h:outputText id="otxtDiasFestivos"	value="Días Festivos del Periódo" /></td>
+					<td>
+						<rich:dataTable id="listaDiasFestivosPeriodo" value="#{pdcController.listaDiasInhabiles}" var="listaNuevo" width="100%">
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText id="otxtFechaDiaPeriodoHeader" value="Fecha"/>
+								</f:facet>
+									<h:outputText id="otxtFechaDiaPeriodo" value="#{listaNuevo.fechaInhabilListado}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText id="otxtRazonPeriodoHeader" value="Razón"/>
+								</f:facet>
+									<h:outputText id="otxtRazonPeriodo" value="#{listaNuevo.descripFechaInhabilListado}" />
+							</rich:column>									
+						</rich:dataTable>
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputText id="otxtNroDias" value="Número de días inhábiles en el Periódo" /></td>
+					<td><h:inputText id="itxtNroDias" value="#{pdcController.pdcForm.numDiasInhab}" disabled="true" /></td>
+				</tr>
+				<tr><td colspan="2"></td></tr>
+				<tr><td colspan="2"></td></tr>
+				<tr><td colspan="2"></td></tr>
+				<tr>
+					<td colspan="2">
+						<table align="center">
+							<tr>
+								<td><a4j:commandButton id="btnAceptarNuevo" value="Aceptar"
+										onclick="Richfaces.hideModalPanel('mpnNuevoProcCarga')">
+									</a4j:commandButton>
+								</td>
+								<td>
+									<a4j:commandButton id="btnCancelarNuevo" value="#{msg.cancelar}"
+										onclick="Richfaces.hideModalPanel('mpnNuevoProcCarga')">
+									</a4j:commandButton>
+								</td>
+							</tr>
+						</table>					
+					</td>
+				</tr>
+			</table>
+		</a4j:form>
+		</rich:panel>
+</rich:modalPanel>
+</body>
+</html>

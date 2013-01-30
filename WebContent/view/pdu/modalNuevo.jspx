@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<rich:modalPanel id="nuevoCdvPaav" autosized="true">
+	<rich:panel header="Nuevo">
+		<a4j:form id="modaForm2" ajaxSubmit="true">
+			<table align="center" cellspacing="10">
+				<tr>
+					<td><h:outputText value="#{msg.tipoT}" style="width: 50px"></h:outputText>
+					</td>
+					<td><h:selectOneMenu id="comboTipoModal"
+							value="#{pduController.pduForm.tipoModal}" style="width: 150px">
+							<f:selectItems value="#{pduController.panelForm.comboTipo}" />
+							<a4j:support event="onchange" />
+						</h:selectOneMenu>
+					</td>
+
+				</tr>
+
+				<tr>
+					<td><h:outputText value="#{msg.delegacion}"
+							style="width: 50px"></h:outputText></td>
+					<td><h:selectOneMenu id="comboDelegacionModal"
+							value="#{pduController.pduForm.delegacionModal}"
+							style="width: 150px">
+							<f:selectItems value="#{pduController.panelForm.comboDelegacion}" />
+							<a4j:support event="onchange" />
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputText value="#{msg.unidad}" style="width: 50px"></h:outputText>
+					</td>
+					<td><h:selectOneMenu id="comboUnidadModal"
+							value="#{pduController.pduForm.unidadModal}" style="width: 150px">
+							<f:selectItems value="#{pduController.panelForm.comboUnidad}" />
+							<a4j:support event="onchange" />
+						</h:selectOneMenu>
+					</td>
+				</tr>
+
+				<tr>
+					<td><h:outputText value="#{msg.tipoVentanilla}"
+							style="width: 50px"></h:outputText>
+					</td>
+					<td><h:selectOneMenu id="comboTipoVentanillaModal"
+							value="#{pduController.pduForm.tipoVentanillaModal}"
+							style="width: 150px">
+							<f:selectItems
+								value="#{pduController.panelForm.comboTipoVentanilla}" />
+							<a4j:support event="onchange" />
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputText value="#{msg.turno}" style="width: 50px"></h:outputText>
+					</td>
+					<td><h:selectOneMenu id="comboTurnoModal"
+							value="#{pduController.pduForm.turnoModal}" style="width: 150px">
+							<f:selectItems value="#{pduController.panelForm.comboTurno}" />
+							<a4j:support event="onchange" />
+						</h:selectOneMenu>
+					</td>
+
+				</tr>
+				<tr>
+					<td><a4j:commandButton value="#{msg.aceptar}"
+							oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('nuevoCdvPaav')}.hide();"
+							style="width: 100px; height: 24px;" /></td>
+					<td><a4j:commandButton id="cancelarPer"
+							value="#{msg.cancelar}"
+							onclick="Richfaces.hideModalPanel('nuevoCdvPaav')"
+							style="width: 100px; height: 24px;" />
+					</td>
+				</tr>
+			</table>
+		</a4j:form>
+	</rich:panel>
+</rich:modalPanel>
+</html>

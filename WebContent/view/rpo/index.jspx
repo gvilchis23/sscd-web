@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+<title>Reportes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+		<f:view>
+
+			<a4j:form id="tablaReportes" style="background-color: #e6dfb5;"
+				ajaxSubmit="true">
+				<table align="center" cellspacing="15">
+
+					<ui:include src="rpoCombos.jspx" />
+
+					<tr>
+						<td colspan="#{rpoController.rpoForm.colspan}"><rich:dataTable
+								id="tablaRpo" var="lista"
+								binding="#{rpoController.backingTable.tableBinding}"
+								rowKeyVar="row" width="100%" align="center">
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaSeleccionarRpo" value="#{msg.sel}" />
+									</f:facet>
+									<h:selectOneRadio>
+										<f:selectItem itemValue="null" />
+
+									</h:selectOneRadio>
+
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="levatamientoRpo"
+											value="#{msg.levantamiento}" />
+									</f:facet>
+
+									<h:outputText id="levatamientoTablaRpo"
+										value="#{lista.levantamientoTabla}" />
+								</rich:column>
+
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaFechaRpo" value="#{msg.fecha}" />
+									</f:facet>
+									<h:outputText id="fechaRpo" value="#{lista.fechaTabla}" />
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaEstatusRpo" value="#{msg.estatusT}" />
+									</f:facet>
+									<h:outputText id="estatusRpo" value="#{lista.estatusTabla}" />
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="reporteRpo" value="#{msg.informeDlg}" />
+									</f:facet>
+									<h:graphicImage id="informeRpo" url="#{lista.informeTabla}"></h:graphicImage>
+
+								</rich:column>
+
+							</rich:dataTable>
+						</td>
+					</tr>
+
+					<tr>
+
+						<td valign="top" colspan="2" align="center"><h:panelGroup>
+								<a4j:commandButton id="generarInformeRpo" reRender="tablaRpo"
+									value="#{msg.generarDlg}"
+									actionListener="#{rpoController.generarInfome}" />
+							</h:panelGroup></td>
+
+					</tr>
+				</table>
+			</a4j:form>
+
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

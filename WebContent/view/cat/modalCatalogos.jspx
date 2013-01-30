@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+	<style type="text/css">
+		.rich-message-marker img {
+			padding-right:7px;
+		}
+		.rich-message-label {
+			color:red;
+		}
+	</style>
+
+	<rich:modalPanel id="nuevoCatalogoServicio">
+	<a4j:form id="modaForm" ajaxSubmit="true">
+	<input type="hidden" name="tipoVentanilla" value="1" />
+		 <table align="center">
+			<tr>
+				<td>
+					<h:outputLabel  value="Ventanilla:"/>
+				</td>
+				<td>
+					<h:outputLabel  value="#{msg.afiliacion}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel  value="catalogo:"/>
+				</td>
+				<td>
+					<h:outputLabel id="labelParametrizable"  value="#{catController.catForm.tipoSeleccion}"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputLabel  value="valor:"/>
+				</td>
+				<td>
+					<h:inputText id="inputmodal" required="true" value="#{catController.catForm.valor}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="inputmodal" />
+				</td>
+			</tr>
+			<tr align="center">
+				<td>
+				<a4j:commandButton value="#{msg.aceptar}"  action="#{catController.guardar}"  />
+				</td>
+				<td>
+				<a4j:commandButton id="cancelarCat" reRender="inputmodal,tableAfiliacion" action="#{catController.limpiar}" value="#{msg.cancelar}" onclick="Richfaces.hideModalPanel('nuevoCatalogoServicio')"/>
+				
+				</td>
+			</tr>
+		</table>
+			</a4j:form>
+		</rich:modalPanel>
+		
+		<rich:modalPanel  id="nuevoServicio">
+			<a4j:form id="modaForm2" ajaxSubmit="true" >
+				<input type="hidden" name="tipoVentanillas" value="1" />
+		 <table align="center">
+			<tr>
+				<td>
+					<h:outputLabel id="lab"  value="Ventanilla:"/>
+				</td>
+				<td>
+					<h:outputLabel id="af"  value="#{msg.afiliacion}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel id="cat"   value="catalogo:"/>
+				</td>
+				<td>
+					<h:selectOneMenu  id="comboS" value="#{catController.catForm.catCatalogo}">
+		 				<f:selectItems value="#{catController.catForm.comboServicios}"/>
+           			</h:selectOneMenu>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputLabel id="val"  value="valor:"/>
+				</td>
+				<td>
+					<h:inputText id="modalinput" required="true" value="#{catController.catForm.valor}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="modalinput" />
+				</td>
+			</tr>
+			</table>
+				<a4j:commandButton id="guardarSer" value="#{msg.aceptar}" actionListener="#{catController.guardarCdcServicio}" />
+				
+				<a4j:commandButton id="can" reRender="modalinput,comboS" value="#{msg.cancelar}" action="#{catController.limpiar}" onclick="Richfaces.hideModalPanel('nuevoServicio')"/>
+			</a4j:form>
+		</rich:modalPanel>
+
+<rich:modalPanel id="nuevaUnidad" autosized="true">
+	<a4j:form id="modaForm3" ajaxSubmit="true">
+		<table align="center">
+			<tr>
+				<td><h:outputLabel value="Ventanilla:" /></td>
+				<td><h:outputLabel value="#{msg.afiliacion}" /></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel value="Entidad Federativa:" /></td>
+				<td>
+					<h:selectOneMenu id="entFed" value="#{catController.catForm.entidadFederativa}">
+						<f:selectItems value="#{catController.catForm.comboEntidadFed}" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td><h:outputLabel value="Delegacion:" /></td>
+				<td>
+					<h:selectOneMenu id="delega" value="#{catController.catForm.delegacion}">
+						<f:selectItems value="#{catController.catForm.comboDelegacion}" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td><h:outputLabel value="Tipo Unidad:" /></td>
+				<td>
+					<h:selectOneMenu id="tipoUni" value="#{catController.catForm.tipoUnidad}">
+						<f:selectItems value="#{catController.catForm.comboTipoUnidad}" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Nombre unidad:"/>
+				</td>
+				<td>
+					<h:inputText id="nombre" value="#{catController.catForm.nombreUnidad}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="nombre" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Calle:"/>
+				</td>
+				<td>
+					<h:inputText id="domCalle" value="#{catController.catForm.domCalle}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="domCalle" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Colonia:"/>
+				</td>
+				<td>
+					<h:inputText id="domColonia" value="#{catController.catForm.domColonia}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="domColonia" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Municipio"/>
+				</td>
+				<td>
+					<h:inputText id="domMunicipio" value="#{catController.catForm.domMunicipio}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="domMunicipio" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Número:"/>
+				</td>
+				<td>
+					<h:inputText id="domNumero" value="#{catController.catForm.domNumero}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="domNumero" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Número Telefono:"/>
+				</td>
+				<td>
+					<h:inputText id="numTelefono" value="#{catController.catForm.numTelefono}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="numTelefono" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel value="Referencia:"/>
+				</td>
+				<td>
+					<h:inputText id="refClavePresup" value="#{catController.catForm.refClavePresup}">
+						<rich:ajaxValidator event="onblur" />
+					</h:inputText>
+					<rich:message for="refClavePresup" />
+				</td>
+			</tr>
+		</table>
+		<a4j:commandButton id="save" value="#{msg.aceptar}" 
+						   action="#{catController.guardarSstUnidades}" 
+						   onclick="Richfaces.hideModalPanel('nuevaUnidad')"/>
+		
+		<a4j:commandButton id="clean" reRender="entFed,delega,tipoUni,nombre,domCalle,domColonia,domMunicipio,domNumero,numTelefono,refClavePresup" value="#{msg.cancelar}" action="#{catController.limpiar}" onclick="Richfaces.hideModalPanel('nuevaUnidad')" />
+	</a4j:form>
+</rich:modalPanel>
+
+
+
+</html>

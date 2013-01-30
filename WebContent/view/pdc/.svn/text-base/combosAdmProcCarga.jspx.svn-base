@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+</head>
+<body>
+<rich:panel header="Búsqueda" style="width:600px">
+	<table align="center" width="100%">
+		<tr>		
+			<td align="right" width="1%" ><h:outputLabel value="Tipo" /></td>			
+			<td align="center" width="3%">
+			   <h:selectOneMenu id="comboTipo"  value="#{pdcController.pdcForm.tipoC}">
+		 				<f:selectItems  value="#{pdcController.pdcForm.comboTipo}" />
+		 				<a4j:support event="onchange"
+		 							 action="#{pdcController.llenarListaAdmProcCarga}"
+           				  			 ajaxSingle="true"
+           				  			 reRender="listaAdmProcCarga"> 
+						<!--<f:param name="tipoCombo" value="1"></f:param>-->
+           				</a4j:support>
+     		   </h:selectOneMenu>
+			</td>
+			<td align="right" width="1%" ><h:outputLabel value="Mes" /></td>			
+			<td align="center" width="3%">
+			   <h:selectOneMenu id="comboMes"  value="#{pdcController.pdcForm.mes}">
+		 				<f:selectItems  value="#{pdcController.pdcForm.comboMes}" />
+		 				<a4j:support event="onchange"
+		 							 action="#{pdcController.llenarListaAdmProcCarga}"
+           				  			 ajaxSingle="true"
+           				  			 reRender="listaAdmProcCarga"/>
+     		   </h:selectOneMenu>
+			</td>
+			<td align="right" width="1%"><h:outputLabel value="Año" /></td>			
+			<td align="center" width="3%">
+			   <h:selectOneMenu id="comboAnio"  value="#{pdcController.pdcForm.anio}">
+		 				<f:selectItems  value="#{pdcController.pdcForm.comboAnio}" />
+		 				<a4j:support event="onchange"
+		 							 action="#{pdcController.llenarListaAdmProcCarga}"
+           				  			 ajaxSingle="true"
+           				  			 reRender="listaAdmProcCarga"/>
+     		   </h:selectOneMenu>
+			</td>		  
+		</tr>
+	</table>
+</rich:panel>	
+</body>
+</html>

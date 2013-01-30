@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<rich:dataTable id="tablaTipoUsuarios" var="lista" binding="#{aduController.backingTable.tableBinding}" rows="3">
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="tablaUsername" value="#{msg.tablaUsername}"/>
+			</f:facet>
+				<h:outputText id="usernameColumna" value="#{lista.usernameColumna}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="tablaNombre" value="#{msg.tablaNombre}"/>
+			</f:facet>
+				<h:outputText id="nombreColumna" value="#{lista.nombreColumna}"/>	
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="tablaPerfil" value="#{msg.tablaPerfil}"/>
+			</f:facet>
+				<h:outputText id="perfilColumna" value="#{lista.perfilColumna}"/>	
+		</rich:column>
+
+		<rich:column> 
+			<f:facet name="header">
+				<h:outputText id="eliminarBoton" value="Eliminar"/>
+			</f:facet>
+			<a4j:commandButton 	reRender="tablaTipoUsuarios" 
+								image="../../images/delete.png"
+								onclick="#{rich:component('deletePanel')}.show();return false"/>
+			<a4j:jsFunction name="submit"
+							action="#{aduController.eliminarDato}"
+							reRender="tablaTipoUsuarios"/>
+			<a4j:support event="onclick"
+      					 ajaxSingle="true" 
+      					 reRender="tablaTipoUsuarios"/>
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="editar" value="Editar"/>
+			</f:facet>
+      		<a4j:commandButton reRender="tablaTipoUsuarios"   
+      						 image="../../images/edit.png" 
+      						 onclick="#{rich:component('editarPanel')}.show();return false"/> 
+      		<a4j:jsFunction name="submit"
+							action="#{aduController.editarUsuario}"
+							reRender="tablaTipoUsuarios"/>
+      		<a4j:support event="onclick" 
+       					 ajaxSingle="true"
+      					 reRender="tablaTipoUsuarios" />	
+		</rich:column>
+		<f:facet name="footer">
+                <rich:datascroller page="#{aduController.page}" />
+            </f:facet>
+	</rich:dataTable>
+
+
+<rich:modalPanel id="deletePanel" width="350" height="100">
+	<f:facet name="header">Confirmación</f:facet>
+	<h:panelGrid>
+		<h:panelGrid columns="1">
+			<h:outputText value="¿Esta seguro de eliminar al usuario seleccionado?" style="FONT-SIZE:x-small;" />
+		</h:panelGrid>
+		<h:panelGroup style="display:block; text-align:right; margin-top: 10px;">
+			<input type="button" value="OK"
+				onclick="#{rich:component('deletePanel')}.hide();submit();return false" />
+			<input type="button" value="Cancel"
+				onclick="#{rich:component('deletePanel')}.hide();return false" />
+		</h:panelGroup>
+	</h:panelGrid>
+</rich:modalPanel>
+
+<rich:modalPanel id="editarPanel" width="350" height="100">
+	<f:facet name="header">Prueba</f:facet>
+	<h:panelGrid>
+		<h:panelGrid columns="1">
+			<h:outputText value="¿Probando panel?" style="FONT-SIZE:x-small;" />
+		</h:panelGrid>
+		<h:panelGroup style="display:block; text-align:right; margin-top: 10px;">
+			<input type="button" value="OK"
+				onclick="#{rich:component('editarPanel')}.hide();submit();return false" />
+			<input type="button" value="Cancel"
+				onclick="#{rich:component('editarPanel')}.hide();return false" />
+		</h:panelGroup>
+	</h:panelGrid>
+</rich:modalPanel>
+
+</html>

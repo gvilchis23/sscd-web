@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+<style>
+    .rich-panel-header {
+        color:#0054BD;
+    }
+    .panel {
+        vertical-align:top;
+    }
+    .top {
+        width:200px;height:100px;
+    }
+
+    .head2 {
+        background-image : url();
+        background-color : #4C9600;
+        height:18px;
+        text-align:center;
+        vertical-align:middle;
+        color:#CFF;
+        padding:4px 0;
+    }
+    
+    .body3 {
+        height:100px;
+        overflow:auto;
+    }
+    </style>
+    
+    
+<title>Panel Administrador</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+		
+<rich:panel header="Panel Nacional">
+			<a4j:form id="tablaPanelAdmin" style="background-color: #e6dfb5;"
+				ajaxSubmit="true">
+				<table align="center" >
+				<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+					<tr>
+						<td>
+							<ui:include src="padCombos.jspx" />
+						</td>
+					</tr>
+				</table>
+				<table align="center" border="0">
+				
+					<tr>
+						<td colspan="12">
+						<rich:panel header="Lista de Resultados">
+							
+						<rich:dataTable id="tablaPanelAdministrador"
+								var="lista" binding="#{padController.backingTable.tableBinding}"
+								rows="5" width="830" align="center">
+								<rich:column style="text-align: center;" width="10">
+								
+									<f:facet name="header">
+										<h:outputText id="tablaSeleccionarAdm" value="#{msg.sel}"/>
+									</f:facet>
+									<h:selectOneRadio id="rdbSelDia">
+										<f:selectItem />
+										<a4j:support event="onclick" ajaxSingle="true"
+											oncomplete="desmarcar(this)">
+										</a4j:support>
+									</h:selectOneRadio>
+								
+
+					
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaIdAdm" value="#{msg.id}" />
+									</f:facet>
+									<h:outputText id="idRegistroAdm" value="#{lista.id}"/>
+								</rich:column>
+								
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaNombreAdm" value="#{msg.nombreT}" />
+									</f:facet>
+									<h:outputText id="nombreAdm" value="#{lista.nombre}" />
+								</rich:column>
+								
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaTipoAdm" value="#{msg.tipoT}" />
+									</f:facet>
+									<h:outputText id="tipoAdm" value="#{lista.tipo}" />
+								</rich:column>
+
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaDelegacionAdm"
+											value="#{msg.delegacion}" />
+									</f:facet>
+									<h:outputText id="delegacionAdm"
+										value="#{lista.delegacion}" />
+								</rich:column>
+								
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaUnidadAdm" value="#{msg.unidad}" />
+									</f:facet>
+									<h:outputText id="unidadAdm" value="#{lista.unidad}" />
+								</rich:column>
+								
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaFechaAdm" value="#{msg.fecha}" />
+									</f:facet>
+									<h:outputText id="fechaAdm" value="#{lista.fecha}" />
+								</rich:column>
+								
+								<rich:column>
+									<f:facet name="header">
+										<h:outputText id="tablaEstatusAdm" value="#{msg.estatusT}" />
+									</f:facet>
+									<h:outputText id="estatusAdm" value="#{lista.estatus}" />
+								</rich:column>
+								
+								<rich:column style="text-align: center;">
+									<f:facet name="header">
+										<h:outputText id="reporteAdm" value="#{msg.informeDlg}" />
+									</f:facet>
+									<h:graphicImage id="informeAdm" url="#{lista.reporte}"></h:graphicImage>
+								</rich:column>
+								<f:facet name="footer">
+                					<rich:datascroller page="#{padController.page}" />
+            					</f:facet>
+							</rich:dataTable>
+							</rich:panel>
+						</td>
+					</tr>
+<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+
+
+					<tr>
+					<td>
+					
+					<table>
+					<tr>
+						
+						<td width="130"><h:panelGroup>
+								<a4j:commandButton id="generarInformeAdm" style="width:120px;height:24px;"
+									reRender="tablaPanelAdministrador" value="#{msg.generarDlg}"
+									actionListener="#{padController.generarInforme}" />
+							</h:panelGroup>
+							</td>
+							
+							<td >
+							<a4j:region>
+								<a4j:commandButton id="btnAutorizarCambiosPad"  style="width:120px;height:24px;"
+									value="#{msg.autorizarDlg }"
+									oncomplete="Richfaces.showModalPanel('autorizarCambiosPad')"></a4j:commandButton>
+							</a4j:region>
+						</td>
+					
+						
+						</tr>
+						</table>
+					
+						</td>
+					</tr>
+				</table >
+				<ui:include src="modalAutorizarCambios.jspx" />
+			</a4j:form>
+
+		</rich:panel>
+	</ui:define>
+</ui:composition>
+</html>

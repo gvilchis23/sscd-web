@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<rich:dataTable id="tableAfiliacion" var="lista" binding="#{catController.backingTable.tableBinding}" rowKeyVar="row">
+		<rich:column visible="#{catController.catForm.indexVisible}">
+			<f:facet name="header">
+				<h:outputText id="no" value="No."/>
+			</f:facet>
+				<h:outputText id="rowNo" value="#{row + 1}"/>	
+		</rich:column>
+		<rich:column binding="#{catController.backingColumn.columnBinding}" visible="false">
+			<f:facet name="header">
+				<h:outputText id="outPrim" value="#{catController.catForm.primeraColumna}"/>
+			</f:facet>
+				<h:outputText id="nombreSer" value="#{lista.nombreSerColumna}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="outSeg" value="#{catController.catForm.segundaColumna}"/>
+			</f:facet>
+				<h:outputText id="nombreCat" value="#{lista.nombreCatColumna}"/>	
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="outTer" value="#{catController.catForm.terceraColumna}"/>
+			</f:facet>
+				<h:outputText id="venta" value="#{lista.ventanillaColumna}"/>	
+		</rich:column>
+		<rich:column binding="#{catController.backingColumn.presupColumnBinding}" visible="false">
+			<f:facet name="header">
+				<h:outputText id="clavePresup" value="#{msg.clavePresup}"/>
+			</f:facet>
+				<h:outputText id="presup" value="#{lista.presupuestariaColumna}" />
+		</rich:column>
+		<rich:column> 
+			<f:facet name="header">
+				<h:outputText id="eliminarBoton" value="ELIMINAR"/>
+			</f:facet>
+			<a4j:commandButton  reRender="tableAfiliacion" 
+								image="../../images/delete.png"
+								onclick="#{rich:component('confirmation')}.show();return false"/>
+			<a4j:jsFunction name="submit" 
+							action="#{catController.eliminarDato}"
+							reRender="tableAfiliacion"/>
+			<a4j:support event="onclick" 
+      					 ajaxSingle="true"
+      					 reRender="tableAfiliacion, boton , botonE , comboS , labelParametrizable , entFed , delega , tipoUni , nombre , domCalle , domColonia , domMunicipio , domNumero , numTelefono , refClavePresup"/>
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">
+				<h:outputText id="outEditar" value="EDITAR"/>
+			</f:facet>
+      		<h:commandButton id="botonE" onclick="#{catController.catForm.modalEdit}"  image="../../images/edit.png" /> 
+      		<a4j:support event="onclick" 
+       					 id="otro"
+      					 action="#{catController.mostrarEditarEmergente}" 
+      					 ajaxSingle="true"
+      					 reRender="tableAfiliacion, botonE, comboS, labelParametrizable, modalinput, inputmodal , entFed , delega , tipoUni , nombre , domCalle , domColonia , domMunicipio , domNumero , numTelefono , refClavePresup" />	
+		</rich:column>
+	</rich:dataTable>
+
+<rich:modalPanel id="confirmation" width="350" height="100">
+	<f:facet name="header">Confirmación</f:facet>
+	<h:panelGrid>
+		<h:panelGrid columns="1">
+			<h:outputText value="¿Estas seguro de querer eliminar el registro?" style="FONT-SIZE: medium;" />
+		</h:panelGrid>
+		<h:panelGroup style="display:block; text-align:right; margin-top: 10px;">
+			<input type="button" value="OK"
+				onclick="#{rich:component('confirmation')}.hide();submit();return false" />
+			<input type="button" value="Cancel"
+				onclick="#{rich:component('confirmation')}.hide();return false" />
+		</h:panelGroup>
+	</h:panelGrid>
+</rich:modalPanel>
+</html>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<style>
+	active-row{
+	background-color: "#FFEBDA"
+	}
+		</style>
+<head>
+	<title>Prueba</title>
+</head>
+	  <ui:composition template="../template/layout.xhtml">
+			<ui:define name="body">
+				<f:view>
+					 <rich:comboBox id="comboDelegacion2" defaultLabel="Enter some value">
+			            <f:selectItems  value="#{cdvController.comboDelegacion}"/>
+			      </rich:comboBox> 	
+					<!-- <rich:select>
+	              <f:selectItem itemValue="0" itemLabel="Option 1" />
+	                <f:selectItem itemValue="1" itemLabel="Option 2" />
+	                <f:selectItem itemValue="2" itemLabel="Option 3" />
+	                <f:selectItem itemValue="3" itemLabel="Option 4" />
+	                <f:selectItem itemValue="4" itemLabel="Option 5" />
+	            </rich:select> -->
+	            
+	            				<h:selectOneMenu id="comboDelegacion"  value="#{cdvController.cdvForm.datoDelegacion}">
+					 				<f:selectItems  value="#{cdvController.comboDelegacion}" />
+			     				</h:selectOneMenu>
+			     				<rich:inputNumberSpinner minValue="1" maxValue="24" step="1"></rich:inputNumberSpinner>
+	            		            
+				</f:view>
+		</ui:define>
+	</ui:composition>
+</html>

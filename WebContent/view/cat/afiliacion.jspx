@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<body>  
+ <table align="left" cellspacing="30">
+			<tr>
+				<td>
+					<h:outputLabel style="font-family: serif;"  value="#{msg.catalogo}"/>
+				</td>
+				<td>
+				<h:selectOneMenu id="comboCatalogo"  value="#{catController.catForm.catalogo}">
+		 				<f:selectItems  value="#{catController.catForm.comboCatalogo}" />
+           				  <a4j:support  
+       					 event="onchange" 
+      					  actionListener="#{catController.mostrarVentanaEmergente}" 
+      					  ajaxSingle="true"
+      					  reRender="boton , botonE, comboS , labelParametrizable , tableAfiliacion , entFed , delega , tipoUni"/> 
+     			</h:selectOneMenu>
+				</td>
+			</tr>
+		
+			<tr>
+				<td>
+					<h:commandButton id="boton" binding="#{catController.backingButton.botonBinding}"  value="#{msg.agregar}"/>
+				</td>
+			</tr>
+		</table>	
+			
+		
+</body>
+	
+</html>

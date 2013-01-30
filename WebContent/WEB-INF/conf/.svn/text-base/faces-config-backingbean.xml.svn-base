@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+	
+	
+	<managed-bean>
+		<managed-bean-name>backingTable</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanTable
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingCombo</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanCombobox
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingPick</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanPickList
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingScroller</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanDataScroller
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingModal</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanModalPanel
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingButton</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanCommandButton
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingAjaxButton</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanAjaxCommandButton
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>backingColumn</managed-bean-name>
+		<managed-bean-class>
+			mx.gob.imss.cia.ssdc.cdv.presentacion.component.BackingBeanColumn
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+</faces-config>

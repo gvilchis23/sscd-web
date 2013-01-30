@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+<style>
+.rich-panel-header {
+	color: #0054BD;
+}
+
+.panel {
+	vertical-align: top;
+}
+
+.top {
+	width: 200px;
+	height: 100px;
+}
+
+.head2 {
+	background-image: url();
+	background-color: #4C9600;
+	height: 18px;
+	text-align: center;
+	vertical-align: middle;
+	color: #CFF;
+	padding: 4px 0;
+}
+
+.body3 {
+	height: 100px;
+	overflow: auto;
+}
+</style>
+<title>Panel de Unidad</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+
+		<rich:panel header="Panel de Unidad">
+			<a4j:form id="tablaPdu" style="background-color: #e6dfb5;"
+				ajaxSubmit="true">
+				<table align="center" border="0">
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td><ui:include src="pduCombos.jspx" />
+						</td>
+					</tr>
+				</table>
+				<table align="center" border="0">
+					<tr>
+						<td colspan="12"><rich:panel header="Lista de Resultados"
+								style="width: 850px;">
+								<rich:dataTable id="tablaPanelUnidad" var="lista"
+									binding="#{pduController.backingTable.tableBinding}" rows="5"
+									width="830" align="center">
+
+									<rich:column style="text-align: center;" width="10">
+										<f:facet name="header">
+											<h:outputText id="tablaSeleccionar" value="#{msg.sel}" />
+										</f:facet>
+										<h:selectOneRadio id="rdbSelDia">
+											<f:selectItem />
+											<a4j:support event="onclick" ajaxSingle="true"
+												oncomplete="desmarcar(this)">
+											</a4j:support>
+										</h:selectOneRadio>
+
+									</rich:column>
+
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText id="tablaId" value="#{msg.id}" />
+										</f:facet>
+
+										<h:outputText id="idRegistro" value="#{lista.id}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText id="tablaNombre" value="#{msg.nombreT}" />
+										</f:facet>
+										<h:outputText id="nombre" value="#{lista.nombre}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText id="tablaTipo" value="#{msg.tipoT}" />
+										</f:facet>
+										<h:outputText id="tipo" value="#{lista.tipo}" />
+									</rich:column>
+
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText id="tablaFecha" value="#{msg.fecha}" />
+										</f:facet>
+										<h:outputText id="fecha" value="#{lista.fecha}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText id="tablaEstatus" value="#{msg.estatusT}" />
+										</f:facet>
+										<h:outputText id="estatus" value="#{lista.estatus}" />
+									</rich:column>
+
+
+								</rich:dataTable>
+							</rich:panel>
+						</td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+				<tr><td>
+				<table border="0">
+					<tr>
+
+						<td style="width: 130px" valign="top" align="left"><a4j:region>
+								<a4j:commandButton id="nuevo" reRender="tablaPanelUnidad"
+									value="Nuevo"
+									oncomplete="Richfaces.showModalPanel('nuevoCdvPaav')"
+									style="width: 120px; height: 24px;" />
+							</a4j:region></td>
+						<td style="width: 130px" valign="top" align="left"><h:commandButton
+								type="submit" value="Editar" style="width: 120px; height: 24px;"></h:commandButton>
+						</td>
+						<td width="130"><h:commandButton type="submit"
+								value="Eliminar" style="width: 120px; height: 24px;"></h:commandButton>
+						</td>
+						<td valign="top" align="left"><h:commandButton type="submit"
+								value="Seguimiento Mensual" style="width: 120px; height: 24px;"></h:commandButton>
+						</td>
+
+					</tr>
+				</table>
+				</td></tr>
+				</table>
+				<ui:include src="modalNuevo.jspx" />
+			</a4j:form>
+
+		</rich:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

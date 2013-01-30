@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+<tr>
+	<td align="right"><h:outputLabel value="#{msg.tipo}" /></td>
+	<td align="left"><h:selectOneMenu id="comboTipoReporte"
+			value="#{rpoController.rpoForm.tipoReporte}">
+			<f:selectItems value="#{rpoController.rpoForm.comboTipoReporte}" />
+			<a4j:support event="onchange" action="#{rpoController.ocultarCombos}"
+				ajaxSingle="true"
+				reRender="comboDelegacionRpo,comboUnidadRpo,etiquetaDelegacion,etiquetaUnidad" />
+		</h:selectOneMenu></td>
+	<td align="right"><h:outputLabel id="etiquetaDelegacion"
+			value="#{msg.delegacion}"
+			style="display:#{rpoController.rpoForm.ocultarComboDel};" /></td>
+
+	<td align="left"><h:selectOneMenu id="comboDelegacionRpo"
+			value="#{rpoController.rpoForm.delegacion}"
+			style="display:#{rpoController.rpoForm.ocultarComboDel};">
+			<f:selectItems value="#{rpoController.rpoForm.comboDelegacion}" />
+
+		</h:selectOneMenu></td>
+	<td align="right"><h:outputLabel id="etiquetaUnidad"
+			value="#{msg.unidadDlg}"
+			style="display:#{rpoController.rpoForm.ocultarComboUni};" /></td>
+	<td align="left"><h:selectOneMenu id="comboUnidadRpo"
+			value="#{rpoController.rpoForm.unidad}"
+			style="display:#{rpoController.rpoForm.ocultarComboUni};">
+			<f:selectItems value="#{rpoController.rpoForm.comboUnidad}" />
+
+		</h:selectOneMenu></td>
+	<td align="right"><h:outputLabel value="#{msg.mes}" /></td>
+	<td align="left"><h:selectOneMenu id="comboMesRpo"
+			value="#{rpoController.rpoForm.mes}">
+			<f:selectItems value="#{rpoController.rpoForm.comboMes}" />
+
+		</h:selectOneMenu></td>
+	<td align="right"><h:outputLabel value="#{msg.ano}" /></td>
+	<td align="left"><h:selectOneMenu id="comboAnioRpo"
+			value="#{rpoController.rpoForm.anio}">
+			<f:selectItems value="#{rpoController.rpoForm.comboAnio}" />
+
+		</h:selectOneMenu></td>
+
+</tr>
+
+</html>

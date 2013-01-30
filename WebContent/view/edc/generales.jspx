@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+<title>DATOS GENERALES</title>
+
+</head>
+<body > 
+<table width="100%">
+	<tr>
+		<td width="18%">		</td>
+		<td width="82%">
+			<table width="100%" style="border-style: outset; margin-bottom: 2%; border-right-style: inset; border-bottom-style: inset;" >
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.delegacion}"/></td>
+					<td width="21%"><h:outputText id="encabezadoDelegacion" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.unidad}"/></td>
+					<td width="21%"><h:outputText id="encabezadoUnidad" value="#{edcController.edcEncabezadoForm.unidad}" /></td>
+					<td></td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.ventanilla}"/></td>
+					<td width="21%"><h:outputText id="encabezadoVentanilla" value="#{edcController.edcEncabezadoForm.ventanilla}" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.turno}"/></td>
+					<td width="21%"><h:outputText id="encabezadoTurno" value="#{edcController.edcEncabezadoForm.turno}" /></td>
+					<td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table  width="850" style="margin-top: 1%">
+	<tr>
+		<td width="18%">
+			<table width="100%" >
+				<tr>
+					<td width="80%">
+						<ui:include src="../edc/menuNavegacion.jspx"/>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="82%">
+			<table  width="100%">
+			<tr>
+				<td width="3%"></td>
+				<td width="20%">
+					<h:outputLabel value="#{msg.delegacion}"/>
+				</td>
+				<td width="21%">
+					 <h:selectOneMenu  id="comboDelegacion"  value="#{edcController.cdvForm.datoDelegacion}" title="Delegación" style="width: 100%">
+			 				<f:selectItems  value="#{edcController.comboDelegacion}" />
+			 				 <a4j:support  
+	       					 event="onchange"  
+	      					  actionListener="#{edcController.llenarComboUnidad}" ajaxSingle="true"
+	      					   reRender="comboUnidad"/> 
+	     			</h:selectOneMenu>
+				</td>
+				<td width="3%"></td>
+				<td width="30%">
+					<h:outputLabel value="#{msg.unidad}"/>
+				</td>
+				<td width="20%">
+					<h:selectOneMenu id="comboUnidad"  value="#{edcController.cdvForm.datoUnidad}" style="width: 100%" required="true" requiredMessage="campo obligatorio">
+			 				<f:selectItems  value="#{edcController.comboUnidad}" />
+			 				<a4j:support  
+	       					 event="onchange"  
+	      					  actionListener="#{edcController.llenarComboTipoUnidad}" ajaxSingle="true"
+	      					   reRender="comboTipoUnidad"/> 
+			 				<rich:ajaxValidator event="|onblur"/>
+	     			</h:selectOneMenu>
+				</td>
+				<td width="13%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td colspan="2" style="text-align: center">
+					<rich:message for="comboUnidad" />
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		<table  width="100%" style="margin-top: 5%">
+				<tr>
+					<td width="3%"></td>
+					<td width="20%">
+						<h:outputLabel value="#{msg.tipounidad}"/>
+					</td>
+					<td width="21%">
+						<h:selectOneMenu id="comboTipoUnidad"  value="#{edcController.cdvForm.datoTipoUnidad}" style="width: 100%" required="true" requiredMessage="campo obligatorio">
+				 				<f:selectItems  value="#{edcController.comboTipoUnidad}" />
+		     			</h:selectOneMenu>
+					</td>
+					<td width="3%"></td>
+					<td width="30%">
+						<h:outputLabel value="#{msg.ventanilla}"/>
+					</td>
+					<td width="20%">
+						<h:selectOneMenu id="comboTipoVentanilla"  value="#{edcController.cdvForm.datoTipoVentanilla}" style="width: 100%" required="true" requiredMessage="campo obligatorio">
+				 				<f:selectItems  value="#{edcController.comboTipoVentanilla}" />
+		     			</h:selectOneMenu>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="2" style="text-align: center">
+						<rich:message for="comboTipoUnidad" style="color: red;" />
+					</td>
+					<td></td>
+					<td colspan="2" style="text-align: center">
+						<rich:message for="comboTipoVentanilla" style="color: red;" />
+					</td>
+					<td></td>
+				</tr>
+		</table>
+		<table  width="100%" style="margin-top: 5%">
+		<tr>
+			<td width="3%"></td>
+			<td width="20%">
+					<h:outputLabel value="#{msg.turno}"/>
+			</td>
+			<td width="21%">
+				<h:selectOneMenu id="comboTurno"  value="#{edcController.cdvForm.datoTurno}" style="width: 100%">
+		 				<f:selectItems  value="#{edcController.comboTurno}" />
+     			</h:selectOneMenu>
+			</td>
+			<td width="3%"></td>
+			<td width="30%">
+				<h:outputLabel value="#{msg.numero}"/>
+			</td>
+			<td width="20%">
+				<h:selectOneMenu id="comboNumVentanilla"  value="#{edcController.cdvForm.datoNumVentanilla}" style="width: 100%">
+		 				<f:selectItems  value="#{edcController.cdvForm.comboNumVentanilla}" />
+     			</h:selectOneMenu>
+			</td>
+			<td></td>
+		</tr>
+		</table>
+		<h:panelGrid  columns="1" style="margin-top: 10%">	
+			<h:outputLabel value="Persona que proporciono la informacion"/>
+		 </h:panelGrid>
+			<h:panelGrid  columns="2" cellspacing="10">	
+				<h:inputText size="50"  id="personaInfo" value="#{edcController.datoPersonaInfo}">
+	      		</h:inputText>
+	      		<a4j:region  >
+				  <a4j:commandButton id="botonAgregar" reRender="comboPuesto,comboCate" action="#{edcController.llenarCombosModal}" value="#{msg.agregar}" oncomplete= "Richfaces.showModalPanel('nuevoPersona')" />
+				</a4j:region>				
+      	</h:panelGrid>
+      	<table width="100%" cellpadding="5"  style="margin-top: 5%">
+    		<tr>
+    			<td width="55%"></td>
+    			<td  align="center">Hora</td>
+    			<td align="center">Minuto</td>
+    			<td></td>
+    			<td align="center">Hora</td>
+    			<td align="center">Minuto</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<h:outputLabel value="#{msg.horario}"/>
+    			</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboHoraNormalIni" value="#{edcController.cdvForm.datoHoraNormalIni}" maxValue="24" minValue="1" required="true" requiredMessage="Campo obligatorio" />
+    			</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboMinNormalIni" value="#{edcController.cdvForm.datoMinNormalIni}" maxValue="59" required="true" requiredMessage="Campo obligatorio" />
+    			</td>
+    			<td align="center">a</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboHoraNormalFin" value="#{edcController.cdvForm.datoHoraNormalFin}" minValue="1" maxValue="24" required="true" requiredMessage="Campo obligatorio" />
+    			</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboMinNormalFin" value="#{edcController.cdvForm.datoMinNormalFin}" minValue="0" maxValue="59" required="true" requiredMessage="Campo obligatorio"/> 
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    				<h:outputLabel value="#{msg.real}"></h:outputLabel>
+    			</td>
+    			<td>
+    				<rich:inputNumberSpinner  id="comboHoraRealIni"  value="#{edcController.cdvForm.datoHoraRealIni}" minValue="1" maxValue="24"  required="true" requiredMessage="Campo obligatorio"/>
+    				
+    			</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboMinRealIni"  value="#{edcController.cdvForm.datoMinRealIni}" minValue="0" maxValue="59" required="true" requiredMessage="Campo obligatorio" />
+    			</td>
+    			<td align="center">a</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboHoraRealFin"  value="#{edcController.cdvForm.datoHoraRealFin}" minValue="1" maxValue="24" required="true" requiredMessage="Campo obligatorio" />
+    			</td>
+    			<td>
+    				<rich:inputNumberSpinner id="comboMinRealFin"  value="#{edcController.cdvForm.datoMinRealFin}" minValue="0" maxValue="59" required="true" requiredMessage="Campo obligatorio"/>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td>
+    			</td>
+    			<td colspan="5" align="center">
+    				<h:outputText id="error" value="#{edcController.error}" style="color: red;"/>
+    			</td>
+    		</tr>
+    		<tr>
+		<td colspan="6" >
+			<table  width="25%" style="margin-top: 8%" align="right">
+				<tr>
+					<td align="right">
+						<a4j:commandButton type="submit" value="#{msg.siguiente}" reRender="error, menuGenerales"  action="#{edcController.guardarCdvGeneral}" />
+					</td>
+					<td align="right">
+					<a4j:commandButton value="#{msg.salir}" ajaxSingle="true" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>	
+    	</table>
+    	</td>
+	</tr>
+</table>
+</body>
+</html>

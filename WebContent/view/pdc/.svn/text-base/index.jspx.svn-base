@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<head>
+ 
+<title>Administrador de Procesos de Carga</title>
+</head>
+
+<body>
+  <ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+		<rich:panel header="Administrador de Procesos de Carga" >
+			<a4j:form id="tablaPdc" style="background-color: #e6dfb5;"
+				ajaxSubmit="true">
+					<table align="center" cellspacing="3">
+						<tr>
+							<td colspan="5">
+								<ui:include src="../pdc/combosAdmProcCarga.jspx" />
+							</td>
+						</tr>
+					</table>
+					<table align="center">
+						<tr>
+							<td colspan="5" >
+								<ui:include src="../pdc/listaAdmProcCarga.jspx"/>
+							</td>
+						</tr>
+					</table>
+					<table align="center" width="610px">
+						<tr>
+							<td valign="top" align="left">
+								<a4j:region>
+								<a4j:commandButton id="btnNuevo" type="submit" reRender="modalNuevoProcCarga"
+									value="Nuevo" action="#{pdcController.mostrarNuevoProceso}"
+									oncomplete="Richfaces.showModalPanel('mpnNuevoProcCarga')"
+									ajaxSingle="true" style="width:110px;height:24px;"/>
+								</a4j:region>							
+							</td>
+							<td valign="top" align="left"><h:commandButton
+								type="submit" value="Editar" style="width:110px;height:24px;"></h:commandButton></td>
+							<td valign="top"  align="left"><h:commandButton
+								type="submit" value="Eliminar" style="width:110px;height:24px;"></h:commandButton></td>
+							<td valign="top" align="left"><h:commandButton
+								type="submit" value="Generar informe" style="width:110px;height:24px;"></h:commandButton>
+							</td>
+							<td valign="top" align="left">
+								<a4j:region>
+								<a4j:commandButton id="btnConfig" type="submit" reRender="listaDiasFestivos"
+									value="Configuración anual" action="#{pdcController.mostrarConfigAnual}"
+									oncomplete="Richfaces.showModalPanel('mpnConfigAnual')"
+									ajaxSingle="true" style="width:110px;height:24px;"/>
+								</a4j:region>								
+							</td>
+						</tr>						
+		  			</table>
+			 </a4j:form>
+			 <ui:include src="modalConfigAnual.jspx" />
+			 <ui:include src="modalNuevoProcCarga.jspx" />
+	  </rich:panel>
+	</ui:define>
+  </ui:composition>
+
+</body>
+</html>

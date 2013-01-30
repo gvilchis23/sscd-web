@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+	<style type="text/css">
+		.rich-message-marker img {
+			padding-right:7px;
+		}
+		.rich-message-label {
+			color:red;
+		}
+	</style>
+
+	<rich:modalPanel id="User">
+	<a4j:form id="modaForm" ajaxSubmit="true">
+	<input type="hidden" name="tipoVentanilla" value="1" />
+		 <table align="center">
+			<tr>
+				<td>
+					<h:outputLabel  value="Ventanilla:"/>
+				</td>
+				<td>
+					<h:outputLabel  value="#{msg.afiliacion}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel  value="catalogo:"/>
+				</td>
+				<td>
+					<h:outputLabel id="labelParametrizable"  value="#{aduController.aduForm.tipoUsuario}"/>
+				</td>
+			</tr>
+		</table>
+			</a4j:form>
+		</rich:modalPanel>
+		
+
+
+
+</html>

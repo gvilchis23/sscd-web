@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package mx.gob.imss.cia.ssdc.cdv.presentacion.component;
+
+import org.richfaces.component.html.HtmlDataTable;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author Guillermo Vilchis Gonzalez
+ *
+ */
+@Component
+@Scope("request")
+@Qualifier("backingTable")
+public class BackingBeanTable {
+	
+	private HtmlDataTable tableBinding ;
+	
+	
+	public BackingBeanTable() {
+	      tableBinding = new HtmlDataTable() ;
+	   }
+
+
+	/**
+	 * @return the tableBinding
+	 */
+	public HtmlDataTable getTableBinding() {
+		return tableBinding;
+	}
+
+	/**
+	 * @param tableBinding the tableBinding to set
+	 */
+	public void setTableBinding(HtmlDataTable tableBinding) {
+		this.tableBinding = tableBinding;
+	}
+
+	
+}

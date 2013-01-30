@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+</head>
+<body>
+	<rich:panel header="Búsqueda" style="width: 850px;">
+		<table align="center" border="0">
+			<tr>
+				<td><h:outputLabel value="#{msg.tipoDlg}" /></td>
+				<td></td>
+				<td><h:selectOneMenu id="comboTipoCcn"
+						value="#{dlgController.dlgForm.tipo}">
+						<f:selectItems value="#{dlgController.panelForm.comboTipo}" />
+						<a4j:support event="onchange"
+							action="#{dlgController.filtrarComboEstatus}" ajaxSingle="true"
+							reRender="tablaSeleccionarCcn,comboEstatusCcn" />
+					</h:selectOneMenu></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><h:outputLabel value="#{msg.mesDlg}" /></td>
+				<td></td>
+				<td><h:selectOneMenu id="comboMesCcn"
+						value="#{dlgController.dlgForm.mes}">
+						<f:selectItems value="#{dlgController.panelForm.comboMes}" />
+
+					</h:selectOneMenu></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><h:outputLabel value="#{msg.anoDlg}" /></td>
+				<td></td>
+				<td><h:selectOneMenu id="comboAnioCcn"
+						value="#{dlgController.dlgForm.anio}">
+						<f:selectItems value="#{dlgController.panelForm.comboAnio}" />
+
+					</h:selectOneMenu></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><h:outputLabel value="#{msg.estatusDlg}" /></td>
+				<td></td>
+				<td><h:selectOneMenu id="comboEstatusCcn"
+						value="#{dlgController.dlgForm.estatus}">
+						<f:selectItems value="#{dlgController.panelForm.comboEstatus}" />
+
+					</h:selectOneMenu></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><h:outputLabel value="#{msg.unidadDlg}:" /></td>
+				<td></td>
+				<td><h:selectOneMenu id="comboUnidadCcn"
+						value="#{dlgController.dlgForm.unidad}">
+						<f:selectItems value="#{dlgController.panelForm.comboUnidad}" />
+
+					</h:selectOneMenu></td>
+			</tr>
+		</table>
+	</rich:panel>
+</body>
+
+
+</html>

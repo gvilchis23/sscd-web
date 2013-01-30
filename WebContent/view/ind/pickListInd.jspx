@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<table >
+	<tr>
+		<td align="left">
+			<table cellpadding="5">
+				<tr>
+					<td align="right" width="50%"><h:outputText id="tipoReporte"
+							value="#{msg.tipoReporte}"></h:outputText></td>
+
+
+					<td><h:selectOneRadio id="rdTipoReporte"
+							value="#{indController.aux}">
+							<f:selectItem itemValue="#{indController.block1}"
+								itemLabel="Desgloce Excel" />
+							<a4j:support event="onclick"
+								action="#{indController.generarImagenReporte}" ajaxSingle="true"
+								reRender="imgReporte" />
+							<f:selectItem itemValue="#{indController.block2}"
+								itemLabel="Reporte (PDF)" />
+							<a4j:support event="onclick"
+								action="#{indController.generarImagenReporte}" ajaxSingle="true"
+								reRender="imgReporte" />
+
+						</h:selectOneRadio>
+					</td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+		<td>
+			<table cellpadding="5">
+				<tr>
+					
+					<td ><h:outputText
+							value="#{msg.catProblematicas}"></h:outputText>
+					</td>
+					<td align="center"><h:outputText
+							value="#{msg.catSeleccionadas}"></h:outputText>
+					</td>
+					<td></td>
+					
+				</tr>
+				<tr>
+
+					<td colspan="2"><h:panelGroup>
+							<rich:pickList id="pickProblematicasInd"
+								value="#{indController.indForm.categoriasSeleccionadas}"
+								removeAllControlLabel="#{msg.pickQuitarTodas}"
+								removeControlLabel="#{msg.pickQuitar}"
+								copyAllControlLabel="#{msg.pickAgregarTodas}"
+								copyControlLabel="#{msg.pickAgregar}">
+								<f:selectItems value="#{indController.indForm.categorias}" />
+
+							</rich:pickList>
+						</h:panelGroup>
+					</td>
+					<td>
+
+						<table align="left">
+							<tr>
+								<td align="center"><h:graphicImage id="imgReporte"
+										url="#{indController.indForm.urlImagen}">
+									</h:graphicImage></td>
+							</tr>
+							<tr>
+								<td align="center"><h:commandLink value="Descargar"></h:commandLink>
+								</td>
+							</tr>
+						</table>
+					</td>
+
+				</tr>
+			</table></td>
+	</tr>
+</table>
+
+
+
+
+</html>

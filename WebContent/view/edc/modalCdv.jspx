@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+ 
+	<rich:modalPanel  id="nuevoPersona" autosized="true">
+	  <a4j:form id="modaForm2" ajaxSubmit="true" >
+		 <table align="center">
+			<tr>
+				<td>
+					<h:outputLabel  value="#{msg.apellidop}"/>
+				</td>
+				<td>
+					<h:inputText  id="apellidoPaterno" value="#{edcController.cdvForm.datoModalApellidoP}" required="true" requiredMessage="campo requerido">
+						<rich:ajaxValidator event="onblur"/>											
+					</h:inputText>
+				</td>
+				<td>
+					<rich:message for="apellidoPaterno" style="color: red;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel  value="#{msg.apellidom}"/>
+				</td>
+				<td>
+					<h:inputText id="apellidoMaterno" value="#{edcController.cdvForm.datoModalApellidoM}" required="true" requiredMessage="campo requerido">
+						<rich:ajaxValidator event="onblur"/>											
+						</h:inputText>
+				</td> 
+				<td>
+					<rich:message for="apellidoMaterno" style="color: red;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel  value="#{msg.nombre}"/>
+				</td>
+				<td>
+					<h:inputText id="nombre" value="#{edcController.cdvForm.datoModalNombre}" required="true" requiredMessage="campo requerido">
+						<rich:ajaxValidator event="onblur"/>											
+					</h:inputText>
+				</td>
+				<td>
+					<rich:message for="nombre" style="color: red;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel id="cat"   value="#{msg.categoria}"/>
+				</td>
+				<td>
+					<h:selectOneMenu  id="comboCate" value="#{edcController.cdvForm.datoModalCategoria}" style="width: 100%">
+		 				<f:selectItems value="#{edcController.cdvForm.comboCategoria}"/>
+           			</h:selectOneMenu>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputLabel id="puesto"   value="#{msg.puesto}"/>
+				</td>
+				<td>
+					<h:selectOneMenu  id="comboPuesto" value="#{edcController.cdvForm.datoModalPuesto}" style="width: 100%">
+		 				<f:selectItems value="#{edcController.cdvForm.comboPuesto}"/>
+           			</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputLabel  value="#{msg.lada}"/>
+				</td>
+				<td>
+					<h:outputLabel  value="#{msg.telefono}"/>
+				</td>
+				<td>
+					<h:outputLabel  value="#{msg.ext}"/>
+				</td>
+				<td>
+					<h:outputLabel  value="#{msg.correo}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:inputText id="lada" value="#{edcController.cdvForm.datoModalLada}" required="true" requiredMessage="campo requerido">
+					<rich:ajaxValidator event="onblur"/>											
+						</h:inputText>
+				</td>
+				<td>
+					<h:inputText id="telefono" value="#{edcController.cdvForm.datoModalTelefono}" required="true" requiredMessage="campo requerido">
+					<rich:ajaxValidator event="onblur"/>											
+						</h:inputText>
+				</td>
+				<td>
+					<h:inputText id="ext" value="#{edcController.cdvForm.datoModalExtension}" required="true" requiredMessage="campo requerido">
+						<rich:ajaxValidator event="onblur"/>											
+					</h:inputText>
+				</td>
+				<td>
+					<h:inputText id="correo" value="#{edcController.cdvForm.datoModalCorreo}" required="true" requiredMessage="campo requerido">
+						<rich:ajaxValidator event="onblur"/>											
+					</h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<rich:message for="lada" style="color: red;" />
+				</td>
+				<td>
+					<rich:message for="telefono" style="color: red;" />
+				</td>
+				<td>
+					<rich:message for="ext" style="color: red;" />
+				</td>
+				<td>
+					<rich:message for="correo" style="color: red;" />
+				</td>
+			</tr>
+			<tr align="center">
+				<td>
+				</td>
+				<td>
+				<a4j:commandButton value="#{msg.aceptar}" reRender="personaInfo"  action="#{edcController.guardarPersonaInfo}" oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('nuevoPersona')}.hide();" />
+				</td>
+				<td>
+				<a4j:commandButton id="cancelarPer"  action="#{catalogoController.limpiar}" value="#{msg.cancelar}" onclick="Richfaces.hideModalPanel('nuevoPersona')"/>
+				</td>
+			</tr>
+			</table>
+			</a4j:form>
+		</rich:modalPanel>
+		
+			<rich:modalPanel  id="seleccionarRequisitos" autosized="true">
+	 			 <a4j:form id="cdvForm" ajaxSubmit="true" >
+	 			 <h:panelGroup>
+	 				 <rich:pickList id="pickRequisitos" value="#{serviciosController.listaRequisitos}">
+	 			 		<f:selectItems  value="#{serviciosController.cdvServiciosForm.pickRequisitos}" />
+	 			 		<a4j:support  
+       					 		event="onlistchanged"  
+      					 		 ajaxSingle="true"
+      					 		  actionListener="#{serviciosController.llenarTablaRequisitos}"
+      					  		 reRender="tableRequisitos"/>
+	 			 	</rich:pickList>
+	 			  </h:panelGroup>	
+	 			  
+	 			 <rich:dataTable id="tableRequisitos" var="lista" value="#{serviciosController.listaVo}">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Requisito"/>
+						</f:facet>
+							<h:outputText value="#{lista.requisito}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Tipo de Requisito:"/>
+						</f:facet>
+						<h:selectOneRadio  id="radio" value="#{lista.radio}">  
+    						<f:selectItem itemValue="original" itemLabel="Original" /> 
+    						<f:selectItem itemValue="copia" itemLabel="Copia" /> 
+    						<f:selectItem itemValue="ambas" itemLabel="Ambas" />  
+						</h:selectOneRadio> 
+					</rich:column>
+				</rich:dataTable>
+				 <h:panelGrid  columns="2" cellspacing="20">
+				 		<h:panelGroup>
+      						<a4j:commandButton id="aceptarRe" oncomplete="Richfaces.hideModalPanel('seleccionarRequisitos')" reRender="listaPick,aceptarRe" value="Aceptar" action="#{serviciosController.aceptar}">
+      						
+	 			 			</a4j:commandButton>	
+      					  </h:panelGroup>
+      			 </h:panelGrid>
+      			</a4j:form>
+      			 <a4j:form id="cdvForm2" ajaxSubmit="true" >
+      			 <h:panelGrid  columns="2" cellspacing="20">
+      					<h:panelGroup>
+      								  
+	 			 		<a4j:commandButton id="cancelarPer" reRender="listaPick" value="#{msg.cancelar}" action="#{serviciosController.limpiar}" onclick="Richfaces.hideModalPanel('seleccionarRequisitos')">
+      					  </a4j:commandButton>	
+      					  	 
+	 			 		</h:panelGroup>
+	 			 </h:panelGrid>
+			</a4j:form>
+		</rich:modalPanel>
+		
+		<rich:modalPanel  id="seleccionarDifusion" autosized="true">
+	 			 <a4j:form id="cdvFormDifusion" ajaxSubmit="true" >
+	 			 <h:panelGroup>
+	 				 <rich:pickList id="pickDifusion" value="#{serviciosController.listaDifusion}">
+	 			 		<f:selectItems  value="#{serviciosController.cdvServiciosForm.pickDifusion}" />
+	 			 	</rich:pickList>
+	 			  </h:panelGroup>
+	 			 <h:panelGrid  columns="2" cellspacing="20">
+				 		<h:panelGroup>
+      						<a4j:commandButton id="aceptarMe" oncomplete="Richfaces.hideModalPanel('seleccionarDifusion')" reRender="listaPickMedios" value="Aceptar" actionListener="#{serviciosController.aceptarMedios}"/>
+      					  </h:panelGroup>
+      					 <h:panelGroup>
+      						<a4j:commandButton id="cancelarMe" reRender="listaPickMedios" value="#{msg.cancelar}" action="#{serviciosController.limpiarDifusion}" onclick="Richfaces.hideModalPanel('seleccionarDifusion')"/>
+	 			 		</h:panelGroup>
+      			 </h:panelGrid>	
+	 			
+			</a4j:form>
+		</rich:modalPanel>
+		
+		<rich:modalPanel id="seleccionarCausas" autosized="true">
+			<a4j:form id="cdvFormCausas" ajaxSubmit="true" >
+			<h:panelGroup>
+				<rich:pickList id="pickCausas" value="#{solicitudesController.listaCausas}" >
+	 				<f:selectItems  value="#{solicitudesController.edcSolicitudesForm.pickCausas}" />
+	 			</rich:pickList>
+			</h:panelGroup>
+			<h:panelGrid  columns="2" cellspacing="20">
+				 		<h:panelGroup>
+      						<a4j:commandButton id="aceptarCau" reRender="causasPick" oncomplete="Richfaces.hideModalPanel('seleccionarCausas')" value="Aceptar"  actionListener="#{solicitudesController.aceptarCausas}"/>
+      					  </h:panelGroup>
+      					 <h:panelGroup>
+      						<a4j:commandButton id="cancelarCau"  value="#{msg.cancelar}"  onclick="Richfaces.hideModalPanel('seleccionarCausas')"/>
+	 			 		</h:panelGroup>
+      			 </h:panelGrid>	
+			</a4j:form>
+		
+		</rich:modalPanel>
+		
+		
+		
+		
+	
+</html>

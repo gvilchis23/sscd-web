@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<rich:panel header="Búsqueda" style="width: 850px;">
+<table align="center" border="0">
+<tr>
+	<td><h:outputLabel value="#{msg.tipo}" />
+	</td><td></td>
+	<td><h:selectOneMenu id="comboTipo"
+			value="#{pduController.pduForm.tipo}" >
+			<f:selectItems value="#{pduController.panelForm.comboTipo}" />
+			<a4j:support event="onchange"
+				action="#{pduController.filtrarComboEstatus}" ajaxSingle="true"
+				reRender="tablaPanelUnidad,comboEstatus" />
+		</h:selectOneMenu>
+	</td>
+<td></td><td></td><td></td><td></td><td></td>
+	<td><h:outputLabel value="#{msg.mes}" />
+	</td><td></td>
+	<td><h:selectOneMenu id="comboMes"
+			value="#{pduController.pduForm.mes}">
+			<f:selectItems value="#{pduController.panelForm.comboMes}" />
+		</h:selectOneMenu>
+	</td>
+	<td></td><td></td><td></td><td></td><td></td>
+	<td><h:outputLabel value="#{msg.ano}" />
+	</td><td></td>
+	<td>
+		<h:selectOneMenu id="comboAnio"
+			value="#{pduController.pduForm.anio}">
+			<f:selectItems value="#{pduController.panelForm.comboAnio}" />
+		</h:selectOneMenu>
+	</td>
+	<td></td><td></td><td></td><td></td><td></td>
+	<td><h:outputLabel
+			value="#{msg.estatus}" />
+	</td><td></td>
+	<td><h:selectOneMenu id="comboEstatus"
+			value="#{pduController.pduForm.estatus}">
+			<f:selectItems value="#{pduController.panelForm.comboEstatus}" />
+
+		</h:selectOneMenu>
+	</td>
+</tr>
+</table>
+</rich:panel>
+
+</html>

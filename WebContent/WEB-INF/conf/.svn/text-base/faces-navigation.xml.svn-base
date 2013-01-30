@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+
+	<navigation-rule>
+		<from-view-id>/view/*</from-view-id>
+		<navigation-case>
+			<from-outcome>edc</from-outcome>
+			<to-view-id>/view/edc/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>catalogos</from-outcome>
+			<to-view-id>/view/cat/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuarios</from-outcome>
+			<to-view-id>/view/adu/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>servicio</from-outcome>
+			<to-view-id>/view/edc/servicios.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>interrelacionadas</from-outcome>
+			<to-view-id>/view/edc/interrelacionadas.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>solicitudes</from-outcome>
+			<to-view-id>/view/edc/solicitudes.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modAtencion</from-outcome>
+			<to-view-id>/view/edc/moduloAtencion.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nuevoUsuario</from-outcome>
+			<to-view-id>/view/adu/nuevoUsuarioNc.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>panelUnidadAct</from-outcome>
+			<to-view-id>/view/pdu/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>panelUnidadTct</from-outcome>
+			<to-view-id>/view/pdu/indexTct.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>panelDelegacionalNcc</from-outcome>
+			<to-view-id>/view/dlg/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>panelDelegacionalAac</from-outcome>
+			<to-view-id>/view/dlg/indexAac.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>indicadores</from-outcome>
+			<to-view-id>/view/ind/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>indicadoresNacional</from-outcome>
+			<to-view-id>/view/ind/indexNivelCentral.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>indicadoresDelegacion</from-outcome>
+			<to-view-id>/view/ind/indexNivelDelegacion.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>padInicio</from-outcome>
+			<to-view-id>/view/pad/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>padNotificaciones</from-outcome>
+			<to-view-id>/view/pad/indexNotificaciones.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>rpoIndex</from-outcome>
+			<to-view-id>/view/rpo/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>pdcInicio</from-outcome>
+			<to-view-id>/view/pdc/index.faces</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+	</navigation-rule>
+
+</faces-config>

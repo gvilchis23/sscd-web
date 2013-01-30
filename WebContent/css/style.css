@@ -1,0 +1,135 @@
+* {
+	font-family: Arial;
+	font-size: 11px;
+}
+
+#form {
+	background-color: #e6dfb5;
+}
+
+.navegacion {
+	border-style: outset;
+	border-right-style: inset;
+	border-bottom-style: inset;
+	border-bottom-color: #333300;
+}
+
+.navegacion td {
+	height: 24px;
+	width: 150px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+#contenedor {
+	width: 80%;
+	height: 550px;
+	padding: 10px;
+	position: relative;
+}
+
+#menuNavegacion {
+	width: 30%;
+	position: absolute;
+}
+
+#cabecera {
+	width: 70%;
+	left: 250px;
+	position: absolute;
+}
+
+#contenido {
+	margin-top: 15px;
+}
+
+#tipoPersonal {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#tipoPersonal tbody td {
+	text-align: left;
+	font-weight: normal;
+	white-space: nowrap;
+}
+
+#contPromedio {
+	width: 600px;
+	top: 15px;
+	left: 70px;
+	font-weight: bold;
+	position: relative;
+}
+
+#contPromedio div {
+	display: inline;
+}
+
+input[type="text"] {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+	width: 50px;
+}
+
+#datosGenerales {
+	border-style: none;
+}
+
+#datosGenerales td.mayus {
+	text-transform: uppercase;
+	font-weight: lighter;
+}
+
+.rich-toolbar {
+	height: 18px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bold;
+	padding: 4px 0 0 5px;
+	color: #ffffff;
+}
+
+.rich-panel-background {
+	background-color: #EDEADD;
+}
+
+.labelMensaje {
+	color: #FF9933;
+	fontWeight: bold;
+	fontSize: 12;
+	textAlign: center;
+	fontFamily: Arial;
+}
+
+.rich-message-label {
+	font-family: Arial;
+	font-size: 11px;
+	color: #E00F00;
+}
+
+.rich-message {
+	color: #9400D3;
+}
+
+.rich-table-headercell {
+	text-align: center;
+}
+
+h1 {
+	color: #E00F00;
+}
+
+.top {
+	vertical-align: top;
+}
+
+.pbody {
+	padding: 0px;
+	height: 150px;
+	width: 300px;
+	overflow: auto;
+}

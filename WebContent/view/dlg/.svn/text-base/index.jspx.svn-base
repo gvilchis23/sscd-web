@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+<title>Panel Delegacional</title>
+</head>
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+		<rich:panel header="Panel Delegacional">
+			<a4j:form id="tablaPanDlgCcn" style="background-color: #e6dfb5;"
+				ajaxSubmit="true">
+				<table align="center">
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+
+					<tr>
+						<td><ui:include src="../dlg/dlgCombos.jspx" /></td>
+					</tr>
+				</table>
+				<table align="center">
+					<tr>
+						<td colspan="10" width="100%"><ui:include
+								src="../dlg/tablaIndex.jspx" /></td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<td style="width: 130px" valign="top" align="left"><a4j:region>
+											<a4j:commandButton id="generarInformeCcn"
+												style="width:120px;height:24px;" reRender="tablaPanelDlgCcn"
+												value="#{msg.generarDlg}"
+												oncomplete="Richfaces.showModalPanel('tipoInformeCcn')" />
+										</a4j:region>
+									</td>
+									<td style="width: 130px" valign="top" align="left"><h:commandButton
+											type="submit" value="#{msg.agruparDlg}"
+											style="width:120px;height:24px;"></h:commandButton></td>
+
+									<td style="width: 130px" valign="top" align="left"><h:commandButton
+											type="submit" value="#{msg.revisarDlg }"
+											style="width:120px;height:24px;"></h:commandButton></td>
+									<td valign="top" align="left"><a4j:region>
+											<a4j:commandButton id="autorizarCambiosCcn"
+												style="width:120px;height:24px;"
+												value="#{msg.autorizarDlg }"
+												action="#{dlgController.obtenerDetalleCdv }"
+												oncomplete="Richfaces.showModalPanel('autorizarCambiosCcn')"
+												reRender="modaAutorizarCambiosCcn"></a4j:commandButton>
+
+										</a4j:region></td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+			</a4j:form>
+			<ui:include src="modalTipoInforme.jspx" />
+			<ui:include src="modalAutorizarCambios.jspx" />
+		</rich:panel>
+	</ui:define>
+</ui:composition>
+</html>

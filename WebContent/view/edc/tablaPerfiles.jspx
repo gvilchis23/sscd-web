@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+</head>
+<body>
+<rich:panel header="Perfiles Ingresados" style="width: 800px;">
+	<table>	
+	<tr>
+		<td >
+			<rich:dataTable
+				id="tablaPanelEdcPrf" var="lista"
+				binding="#{perfilesController.backingTable.tableBinding}"
+				rows="5" width="650">
+
+				<rich:column width="10">
+					<f:facet name="header">
+						<h:outputText id="tablaSeleccionarCcn" value="#{msg.selDlg}" />
+					</f:facet>
+					<h:selectOneRadio id="rdbSel" value="#{lista.clave}">
+					<f:selectItem itemValue="1"/>
+						<a4j:support event="onclick" ajaxSingle="true" 								
+								oncomplete="desmarcar(this)">
+						</a4j:support>
+					</h:selectOneRadio>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaId" value="#{msg.id}" />
+					</f:facet>
+					<h:outputText id="idRegistro" value="#{lista.id}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaNombre" value="Tiempo de Experiencia" />
+					</f:facet>
+					<h:outputText id="nombre" value="#{lista.nombre}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaTipo" value="Escolaridad" />
+					</f:facet>
+					<h:outputText id="tipo" value="#{lista.tipo}" />
+					</rich:column>				
+				
+<rich:column width="10">
+										<f:facet name="header">
+											<h:outputText id="tablaFecha" value="No. Cursos Especificos" />
+										</f:facet>
+										<h:outputText id="fecha" value="#{lista.fecha}" />
+									</rich:column>
+					<rich:column>
+					<f:facet name="header">
+											<h:outputText id="modificar" value="Modificar" />
+										</f:facet>
+										<h:outputText id="Mod" value="Y" />
+					</rich:column>		
+										<rich:column>
+					<f:facet name="header">
+											<h:outputText id="eliminar" value="Eliminar" />
+										</f:facet>
+										<h:outputText id="delete" value="x" />
+					</rich:column>		
+				
+				</rich:dataTable>
+	    	</td>
+		</tr>
+	</table>
+</rich:panel>
+</body>
+</html>

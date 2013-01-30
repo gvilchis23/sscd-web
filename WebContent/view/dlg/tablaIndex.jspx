@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+</head>
+<body>
+<rich:panel header="Lista de Resultados" style="width: 850px;">
+	<table>	
+	<tr>
+		<td >
+			<rich:dataTable
+				id="tablaPanelDlgCcn" var="lista"
+				binding="#{dlgController.backingTable.tableBinding}"
+				rows="5" width="830">
+
+				<rich:column width="10">
+					<f:facet name="header">
+						<h:outputText id="tablaSeleccionarCcn" value="#{msg.selDlg}" />
+					</f:facet>
+					<h:selectOneRadio id="rdbSel" value="#{lista.clave}">
+					<f:selectItem itemValue="1"/>
+						<a4j:support event="onclick" ajaxSingle="true" 								
+								oncomplete="desmarcar(this)">
+						</a4j:support>
+					</h:selectOneRadio>
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaIdCcn" value="#{msg.idDlg}" />
+					</f:facet>
+
+					<h:outputText id="idRegistroCcn" value="#{lista.id}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaNombreCcn" value="#{msg.nombreTDlg}" />
+					</f:facet>
+					<h:outputText id="nombreCcn" value="#{lista.nombre}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaTipoCcn" value="#{msg.tipoTDlg}" />
+					</f:facet>
+					<h:outputText id="tipoCcn" value="#{lista.tipo}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaUnidadCcn" value="#{msg.unidadDlg}" />
+					</f:facet>
+					<h:outputText id="unidadCcn" value="#{lista.unidad}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaFechaCcn" value="#{msg.fechaDlg}" />
+					</f:facet>
+					<h:outputText id="fechaCcn" value="#{lista.fecha}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaEstatusCcn" value="#{msg.estatusTDlg}" />
+					</f:facet>
+					<h:outputText id="estatusCcn" value="#{lista.estatus}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText id="tablaInformeCcn" value="#{msg.informeDlg}" />
+					</f:facet>
+					
+					
+					<h:graphicImage url="#{lista.reporte}"></h:graphicImage>
+				</rich:column>
+				</rich:dataTable>
+	    	</td>
+		</tr>
+	</table>
+</rich:panel>
+</body>
+</html>

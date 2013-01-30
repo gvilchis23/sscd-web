@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+<title>MODULOATENCION</title>
+</head>
+
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+		<f:view>
+			<a4j:form id="form" ajaxSubmit="true">
+				<f:loadBundle basename="messages" var="msg" />
+				
+				<div class="rich-toolbar">Cédula Diagnóstico Ventanilla</div>
+				
+				<div id="contenedor">
+					<div id="menuNavegacion">
+						<ui:include src="../edc/menuNavegacion.jspx" />
+					</div>
+					<div id="cabecera">
+						<ui:include src="../edc/cabeceraDatosGenerales.jspx" />
+						<div id="contenido">
+							<rich:panel header="#{msg.edcPersonal}" style="height: 380px;">
+							
+								<table id="tipoPersonal" border="1" >
+									<thead>
+										<tr>
+											<td>Tipo Personal</td>
+											<td>Cantidad</td>
+											<td>Tipo Personal</td>
+											<td>Cantidad</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Plazas autorizadas</td>
+											<td>
+												<h:inputText id="plazasAutorizadas" />
+											</td>
+											<td>Comisionados a otros servicios</td>
+											<td>
+												<h:inputText id="otroServicio" />
+											</td>
+										</tr>
+										<tr>
+											<td>Licencias y permisos</td>
+											<td>
+												<h:inputText id="licenciasPermanentes" />
+											</td>
+											<td>Comisionados de otra ventanilla al ser</td>
+											<td>
+												<h:inputText id="otraVentanilla" />
+											</td>
+										</tr>
+										<tr>
+											<td>Incapacidades</td>
+											<td>
+												<h:inputText id="incapacidades" />
+											</td>
+											<td>Reducción de jornada</td>
+											<td>
+												<h:inputText id="reduccionJornada" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								
+							</rich:panel>
+						</div>
+					</div>
+				</div>
+			</a4j:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

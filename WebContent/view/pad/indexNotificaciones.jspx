@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<head>
+   
+<title>Panel Administrador</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="body">
+		<rich:panel header="Notificaciones" >
+
+			<a4j:form id="notificacionAdmin" style="background-color: #e6dfb5;"
+				ajaxSubmit="true">
+				<table align="center" border="0">
+				<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+					<tr>
+						<td></td>
+						
+						<td>
+						
+						<rich:panel header="Seleccionar Tipo de Notificación" style="text-align: left;">
+						<table border="0" align="center">
+						<tr><td>
+						<h:outputText value="#{msg.tipoNotificacion}"></h:outputText>
+						</td>
+						<td></td><td></td>
+						<td>
+						<h:selectOneMenu id="comboNotificacionesPad"
+								value="">
+								<f:selectItems
+									value="#{padController.panelForm.comboTipo}" />
+								<a4j:support event="onchange"
+									action="#{padController.llenarNotificacion}" ajaxSingle="true"
+									reRender="editorNotificacion" />
+							</h:selectOneMenu>
+							</td></tr>
+						</table>
+							
+							</rich:panel>
+						
+						</td>
+						<td></td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td></td>
+						<td align="center">
+						<table border="0" width="500" align="center">
+						<rich:panel header="Editor de Notificaciones" style="text-align: left;">
+						<rich:editor
+								id="editorNotificacion" width="475" height="400"
+								value="#{padController.padForm.notificacion}" theme="advanced">
+								<f:param name="theme_advanced_toolbar_location" value="top" />
+								<f:param name="theme_advanced_toolbar_align" value="left" />
+								<f:param name="theme_advanced_resizing" value="true" />
+								<f:param name="theme_advanced_buttons"
+									value="save,|,bold,italic,underline,|,formatselect,fontselect,fontsizeselect,cut,copy,paste,|,search,replace,|,insertdate,inserttime,
+								preview,|,forecolor,backcolor" />
+
+							</rich:editor>
+							</rich:panel>
+							</table></td>
+						<td width="20%"></td>
+					</tr>
+					<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+					<tr>
+						<td width="20%"></td>
+						<td align="left" ><h:panelGroup >
+								<a4j:commandButton id="guardarNotificacionPad" style="width:100px;height:24px;"
+									value="#{msg.guardar}"
+									actionListener="#{padController.guardarNotificacion}" />
+							</h:panelGroup>
+						</td>
+						<td width="20%"></td>
+					</tr>
+				</table>
+
+			</a4j:form>
+
+		</rich:panel>
+	</ui:define>
+</ui:composition>
+</html>

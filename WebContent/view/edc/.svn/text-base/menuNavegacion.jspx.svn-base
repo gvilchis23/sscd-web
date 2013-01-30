@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<head>
+<title>SERVICIOS</title>
+</head>
+<ui:define name="body">
+<f:view>	
+<body>
+	<table class="navegacion rich-panel-background">
+		<thead>
+			<tr>
+				<th class="rich-toolbar"> Menu Principal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td>									 
+<!-- 			<rich:dataTable id="menuGenerales" width="100%"><f:facet name="header"><h:outputText value="Datos Generales" /></f:facet></rich:dataTable> -->
+				<rich:dataTable id="menuGenerales" width="100%"><f:facet name="header"><h:outputText value="Datos Generales" /></f:facet></rich:dataTable>
+			</td></tr>	
+			<tr><td>
+<!--				<rich:dataTable id="menuServicios" width="100%"><f:facet name="#{serviciosController.menu}"><h:outputText value="Servicios"/></f:facet></rich:dataTable> -->
+				<rich:dataTable id="menuServicios" width="100%"><f:facet name="header"><h:outputText value="Servicios"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+<!--				<rich:dataTable id="menuInterrelacionadas" width="100%"><f:facet name="#{interrelacionadasController.menu}"> <h:outputText value="Ventanillas Inter"/></f:facet></rich:dataTable> -->
+				<rich:dataTable id="menuInterrelacionadas" width="100%"><f:facet name="header"> <h:outputText value="Ventanillas Inter"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+<!--				<rich:dataTable id="menuSolicitudes" width="100%"><f:facet name="#{solicitudesController.menu}"><h:outputText value="Solicitudes"/></f:facet></rich:dataTable> -->
+				<rich:dataTable id="menuSolicitudes" width="100%"><f:facet name="header"><h:outputText value="Solicitudes"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Modulo Atención"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="footer"><h:outputText value="Personal"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Opinión Trabajador"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Perfiles"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Infraestructura"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Sistemas"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Indicadores"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Problemáticas"/></f:facet></rich:dataTable>
+			</td></tr>
+			<tr><td>
+				<rich:dataTable width="100%"><f:facet name="header"><h:outputText value="Sugerencias"/></f:facet></rich:dataTable>
+			</td></tr>
+		</tbody>
+	</table>
+</body>
+</f:view>
+ </ui:define>
+</html>			

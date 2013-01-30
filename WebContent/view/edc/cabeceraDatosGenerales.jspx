@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+<head>
+<title></title>
+</head>
+
+<ui:define name="body">
+	<f:view>
+		<body>
+	  		<rich:panel header="#{msg.datos}"> 
+				<table>
+					<tr>
+						<td><h:outputLabel value="#{msg.delegacion} :"/></td>
+						<td class="mayus"><h:outputText id="encabezadoDelegacion" value="#{edcController.edcEncabezadoForm.delegacion}"/></td>
+						<td><h:outputLabel value="#{msg.unidad} :" /></td>
+						<td class="mayus"><h:outputText id="encabezadoUnidad" value="#{edcController.edcEncabezadoForm.unidad}" /></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{msg.ventanilla} :" /></td>
+						<td class="mayus"><h:outputText id="encabezadoVentanilla" value="#{edcController.edcEncabezadoForm.ventanilla}" /></td>
+						<td><h:outputLabel value="#{msg.turno} :" /></td>
+						<td class="mayus"><h:outputText id="encabezadoTurno" value="#{edcController.edcEncabezadoForm.turno}" /></td>
+					</tr>
+				</table>
+			</rich:panel>
+		</body> 
+	</f:view>
+</ui:define>
+</html>

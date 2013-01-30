@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<rich:modalPanel id="mpnConfigAnual" autosized="true">
+	<rich:panel header="Configuración Anual">
+		<a4j:form id="modalconfigAnual" ajaxSubmit="true">	
+			<table align="center" >
+				<tr>
+					<td>
+						<a4j:outputPanel id="calendar" layout="block">						
+	                    	<rich:calendar value=""
+	                        	popup="false"
+	                        	datePattern="d/M/yy" 
+	                        	showApplyButton="true"  cellWidth="24px" cellHeight="22px" style="width:250px">	
+	                        	<a4j:support event="oncurrentdateselect" action="#{pdcController.obtenerListaDiasFestivos}" ajaxSingle="true" reRender="listaDiasFestivos" />                        		                        		                        	
+	                        </rich:calendar>
+	            		</a4j:outputPanel>					
+					</td>
+					<td>						
+						<rich:panel header="Dias Festivos">
+							<table>
+								<tr>
+									<td>
+										<rich:dataTable id="listaDiasFestivos" value="#{pdcController.listaDiasInhabiles}" var="listaDias"  rowKeyVar="row" width="100%">
+											<rich:column>
+												<f:facet name="header">
+													<h:outputText id="otxtSelDia" value="Sel" />
+												</f:facet>
+													<h:selectOneRadio id="rdbSelDia">
+														<f:selectItem />
+														<a4j:support event="onclick" ajaxSingle="true" 								
+																		oncomplete="desmarcar(this)">
+														</a4j:support>
+													</h:selectOneRadio>
+											</rich:column>
+											<rich:column>
+												<f:facet name="header">
+													<h:outputText id="txtFechaDiaHeader" value="Fecha"/>
+												</f:facet>
+													<h:outputText id="txtFechaDia" value="#{listaDias.fechaInhabilListado}" />
+											</rich:column>
+											<rich:column>
+												<f:facet name="header">
+													<h:outputText id="txtRazonDiaHeader" value="Razón"/>
+												</f:facet>
+													<h:outputText id="txtRazonDia" value="#{listaDias.descripFechaInhabilListado}" />
+											</rich:column>											
+									  	</rich:dataTable>						
+									</td>
+								</tr>
+								<tr><td></td></tr>
+								<tr><td></td></tr>
+								<tr>
+									<td>
+										<a4j:commandButton id="btnEliminarConf" value="Eliminar"
+											onclick="Richfaces.hideModalPanel('configAnual')">
+										</a4j:commandButton>
+									</td>
+								</tr>
+							</table>
+						</rich:panel>
+					</td>
+				</tr>
+				<tr><td colspan="2"></td></tr>
+				<tr><td colspan="2"></td></tr>
+				<tr><td colspan="2"></td></tr>				
+				<tr>
+					<td  colspan="2" align="center">
+						<table align="center">
+							<tr>
+								<td><a4j:commandButton id="btnAgregarDia" value="Agregar"
+									onclick="Richfaces.showModalPanel('mpnlAgregar')">
+									</a4j:commandButton>
+								</td>
+								<td><a4j:commandButton id="btnCancelarConf" value="#{msg.cancelar}"
+									onclick="Richfaces.hideModalPanel('mpnConfigAnual')">
+									</a4j:commandButton>
+								</td>
+							</tr>
+						</table>												
+					</td>
+				</tr>
+			</table>
+		</a4j:form>
+	</rich:panel>
+</rich:modalPanel>
+<rich:modalPanel id="mpnlAgregar" width="300" height="130">
+        <f:facet name="header">Agregar Día:</f:facet>
+        <h:form>
+        <table width="100%"  >
+            		<tr>
+            			<td><h:outputText value="Día Festivo:"/></td>
+		                <td><h:inputText value="28/11/2011" disabled="true"/></td>
+					</tr>
+					<tr >
+						<td><h:outputText value="Descripción o Razón:"/></td>
+		                <td><h:inputTextarea value=""  rows="70" cols="20" /></td>
+		            </tr>
+		            <tr><td colspan="2"></td></tr>
+		            <tr><td colspan="2"></td></tr>
+		            <tr><td colspan="2"></td></tr>
+		            <tr>		            
+		                <td align="right"><a4j:commandButton value="Guardar" id="btnGuardarDia" oncomplete="#{rich:component('mpnlAgregar')}.hide()" reRender="listaDiasFestivos"/></td>
+		                <td><button type="button" id="btnCancelarDia" onclick="Richfaces.hideModalPanel('mpnlAgregar')">Cancel</button></td>
+                	</tr>
+                </table>
+        </h:form>
+    </rich:modalPanel>
+</html>

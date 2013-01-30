@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<rich:panel header="Búsqueda" style="width: 850px;">
+<table align="center">
+<tr><td>
+<table align="center" border="0" width="630">
+<tr>
+	<td><h:outputLabel value="#{msg.tipo}" /></td>
+	<td></td>
+	<td><h:selectOneMenu id="comboTipo"
+			value="#{padController.padForm.tipo}">
+			<f:selectItems value="#{padController.panelForm.comboTipo}" />
+			<a4j:support event="onchange"
+				action="#{padController.filtrarComboEstatus}" ajaxSingle="true"
+				reRender="tablaPanelAdministrador,comboEstatus" />
+		</h:selectOneMenu></td>
+<td></td><td></td><td></td><td></td><td></td>
+
+	<td><h:outputLabel value="#{msg.mes}" /></td>
+
+	<td><h:selectOneMenu id="comboMes"
+			value="#{padController.padForm.mes}">
+			<f:selectItems value="#{padController.panelForm.comboMes}" />
+		</h:selectOneMenu></td>
+
+<td></td><td></td><td></td><td></td><td></td>		
+
+	<td><h:outputLabel value="#{msg.ano}" /></td>
+
+	<td><h:selectOneMenu id="comboAnio"
+			value="#{padController.padForm.anio}">
+			<f:selectItems value="#{padController.panelForm.comboAnio}" />
+
+		</h:selectOneMenu></td>
+<td></td><td></td><td></td><td></td><td></td>		
+
+		
+	<td><h:outputLabel value="#{msg.estatus}" /></td>
+
+	<td><h:selectOneMenu id="comboEstatus"
+			value="#{padController.padForm.estatus}">
+			<f:selectItems value="#{padController.panelForm.comboEstatus}" />
+
+		</h:selectOneMenu></td>
+
+</tr>
+</table>
+</td></tr>
+<tr></tr><tr></tr>
+<tr><td>
+<table align="center" border="0">
+<tr>
+
+	<td><h:outputLabel value="#{msg.delegacion}:" /></td>
+	<td></td>
+	<td><h:selectOneMenu id="comboDelegacion"
+			value="#{padController.padForm.delegacion}">
+			<f:selectItems value="#{padController.panelForm.comboDelegacion}" />
+
+		</h:selectOneMenu></td>
+
+<td></td><td></td><td></td><td></td><td></td>		
+		
+	<td><h:outputLabel value="#{msg.unidad}:" /></td>
+	<td></td>
+	<td><h:selectOneMenu id="comboUnidad"
+			value="#{padController.padForm.unidad}">
+			<f:selectItems value="#{padController.panelForm.comboUnidad}" />
+
+		</h:selectOneMenu></td>
+
+</tr>
+</table>
+</td></tr>
+</table>
+</rich:panel>
+</html>

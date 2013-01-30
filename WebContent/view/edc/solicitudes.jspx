@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+<head>
+<title>SOLICITUDES</title>
+</head>
+
+ <ui:composition template="../template/layout.xhtml">
+<ui:define name="body">
+<f:view>
+	<a4j:form id="form" style="background-color: #e6dfb5 " ajaxSubmit="true">
+	  <f:loadBundle basename="messages" var="msg" />
+	  <body > 
+	  <table width="900" border="1" >
+	<tr>
+		<td width="18%">		</td>
+		<td width="82%">
+			<table width="100%" border="1">
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.delegacion}"/></td>
+					<td width="21%"><h:outputText id="delegacion" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.unidad}"/></td>
+					<td></td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.ventanilla}"/></td>
+					<td width="21%"><h:outputText id="tipoVentanilla" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.turno}"/></td>
+					<td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	  <table width="900" border="1" style="margin-top: 2%">
+	  	<tr>
+	  		<td width="18%">
+				<table width="100%">
+					<tr>
+						<td width="80%" >
+							   <ui:include src="../edc/menuNavegacion.jspx"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="82%" align="center">
+				<table width="100%" border="1" cellpadding="10%">
+					<tr>
+						<td width="50%"><h:outputLabel value="#{msg.solicrecibidas}"/></td>
+						<td>
+							<h:inputText id="promRecibidas" value="#{solicitudesController.edcSolicitudesForm.datoPromSolRecibidas}"     style="width: 30%"/>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{msg.solicatendidas}"/></td>
+						<td>
+							<h:inputText id="promAtendidas"  value="#{solicitudesController.edcSolicitudesForm.datoPromSolAtendidas}"    style="width: 30%"/>
+						</td>
+					</tr>
+					<tr><td></td></tr>
+					<tr>
+						<td style="margin-top: 40%" align="left">
+							<h:outputLabel value="#{msg.causasnoatender}"/>
+						</td>
+						<td>
+							<h:commandButton id="botonCausas" onclick="Richfaces.showModalPanel('seleccionarCausas')" value="#{msg.seleccionar}" style="width: 35%">
+							 <a4j:support  
+       					 event="onmousedown"  
+      					  actionListener="#{solicitudesController.llenarPickListCausas}" ajaxSingle="true"
+      					   reRender="pickCausas"/>						 
+      					  </h:commandButton>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h:panelGrid  columns="2" cellspacing="20">
+								<h:panelGroup>
+					 				<rich:panel id="result" styleClass="pbody">
+										 <rich:dataList id="causasPick" value="#{solicitudesController.listaCausasEn}" var="lista"> 
+                 						   <h:outputText value="#{lista.nombreCausa}"/>
+           								 </rich:dataList> 
+           						 	</rich:panel>
+     							</h:panelGroup>
+     						</h:panelGrid>
+						</td>
+					</tr>
+					<tr>
+	  					<td colspan="2">
+	  						<table border="1" align="right" style="margin-top: 10%" cellpadding="5%">
+					     	<tr>
+					     		<td>
+					     			<a4j:commandButton id="solicAtras" value="#{msg.atras}" action="#{solicitudesController.solicitudesRetroceder}" />
+					     		</td> 
+					     		<td>
+					     			<a4j:commandButton id="solicSiguiente" value="#{msg.siguiente}"  action="#{solicitudesController.guardarCausas}" />
+					     		</td>
+					     		<td>
+					     			<a4j:commandButton id="solicSalir" value="#{msg.salir}" />
+					     		</td>
+					     	</tr>
+			     			</table>
+	  					</td>
+	  				</tr>
+				</table>
+	  		</td>
+	  	</tr>
+	  </table>
+	  </body> 
+		</a4j:form>
+		<ui:include src="../edc/modalCdv.jspx"/>
+	</f:view>
+ </ui:define>
+</ui:composition>
+</html>

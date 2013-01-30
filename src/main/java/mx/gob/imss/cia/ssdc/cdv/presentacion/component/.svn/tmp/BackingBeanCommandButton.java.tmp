@@ -1,0 +1,30 @@
+package mx.gob.imss.cia.ssdc.cdv.presentacion.component;
+
+import javax.faces.component.html.HtmlCommandButton;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("request")
+@Qualifier("backingButton")
+public class BackingBeanCommandButton {
+	
+	private HtmlCommandButton botonBinding;
+
+	/**
+	 * @return the botonBinding
+	 */
+	public HtmlCommandButton getBotonBinding() {
+		return botonBinding;
+	}
+
+	/**
+	 * @param botonBinding the botonBinding to set
+	 */
+	public void setBotonBinding(HtmlCommandButton botonBinding) {
+		this.botonBinding = botonBinding;
+	}
+
+	
+}

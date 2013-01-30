@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+<head>
+<title>MODULOATENCION</title>
+</head>
+
+ <ui:composition template="../template/layout.xhtml">
+<ui:define name="body">
+<f:view>
+	<a4j:form id="form" style="background-color: #e6dfb5 " ajaxSubmit="true">
+	  <f:loadBundle basename="messages" var="msg" />
+	  <body > 
+	  <table width="900" border="1" >
+	<tr>
+		<td width="18%">		</td>
+		<td width="82%">
+			<table width="100%" border="1">
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.delegacion}"/></td>
+					<td width="21%"><h:outputText id="delegacion" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.unidad}"/></td>
+					<td></td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+					<td width="3%"></td>
+					<td width="20%"><h:outputLabel value="#{msg.ventanilla}"/></td>
+					<td width="21%"><h:outputText id="tipoVentanilla" /></td>
+					<td width="3%"></td>
+					<td width="30%"><h:outputLabel value="#{msg.turno}"/></td>
+					<td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	  <table width="900" border="1" style="margin-top: 2%">
+	  	<tr>
+	  		<td width="18%">
+				<table width="100%">
+					<tr>
+						<td width="80%" >
+							   <ui:include src="../edc/menuNavegacion.jspx"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="82%" align="center">
+				<table width="100%" border="1" cellpadding="10%">
+					<tr>
+						<td width="50%"><h:outputLabel value="#{msg.existemod}"/></td>
+						<td>
+							<h:selectOneRadio  id="rdbtExiste" value="#{atencionController.edcAtencionForm.existeModulo}">
+								<f:selectItem itemValue="1" itemLabel="SI"/>						
+								<f:selectItem itemValue="0" itemLabel="NO"/>     						
+							</h:selectOneRadio>
+						</td>
+					</tr>
+					<tr><td></td></tr>
+					<tr>
+						<td><h:outputLabel value="#{msg.personaltec}"/></td>
+						<td>
+							<h:selectOneRadio  id="rdbtPersonal"  value="#{atencionController.edcAtencionForm.personalTecnico}" >
+								<f:selectItem itemValue="1" itemLabel="SI"/>						
+								<f:selectItem itemValue="0" itemLabel="NO"/>     						
+							</h:selectOneRadio>
+						</td>
+					</tr>
+					<tr>
+						<td ><h:outputLabel value="#{msg.visible}"/></td>
+						<td>
+							<h:selectOneRadio  id="rdbtVisible" value="#{atencionController.edcAtencionForm.visible}" >
+								<f:selectItem itemValue="1" itemLabel="SI"/>						
+								<f:selectItem itemValue="0" itemLabel="NO"/>     						
+							</h:selectOneRadio>
+						</td>
+					</tr>
+					<tr>	
+						<td><h:outputLabel value="#{msg.accesible}"/></td>
+						<td>
+							<h:selectOneRadio  id="rdbtAccesible" value="#{atencionController.edcAtencionForm.accesible}"  >
+								<f:selectItem itemValue="1" itemLabel="SI"/>						
+								<f:selectItem itemValue="0" itemLabel="NO"/>     						
+							</h:selectOneRadio>
+						</td>
+					</tr>
+					<tr>	
+						<td><h:outputLabel value="#{msg.senializado}"/></td>
+						<td>
+						<h:selectOneRadio  id="rdbtSenializado" value="#{atencionController.edcAtencionForm.senializado}" >
+								<f:selectItem itemValue="1" itemLabel="SI"/>						
+								<f:selectItem itemValue="0" itemLabel="NO"/>     						
+							</h:selectOneRadio>
+						</td>
+					</tr>
+					<tr>	
+						<td><h:outputLabel value="#{msg.nopersonas}"/></td>
+						<td>
+							<h:inputText id="nopersonas" value="#{atencionController.edcAtencionForm.numeroPersonaAtienden}" style="width: 30%"/>
+						</td>
+					</tr>
+					<tr>
+	  					<td colspan="2">
+	  						<table border="1" align="right" style="margin-top: 10%" cellpadding="5%">
+					     	<tr>
+					     		<td>
+					     			<a4j:commandButton id="solicAtras" value="#{msg.atras}" action="#{solicitudesController.solicitudesRetroceder}" />
+					     		</td> 
+					     		<td>
+					     			<a4j:commandButton id="solicSiguiente" value="#{msg.siguiente}" action="#{atencionController.guardarAtencion}" />
+					     		</td>
+					     		<td>
+					     			<a4j:commandButton id="solicSalir" value="#{msg.salir}" />
+					     		</td>
+					     	</tr>
+			     			</table>
+	  					</td>
+	  				</tr>
+				</table>
+	  		</td>
+	  	</tr>
+	  </table>
+	  </body> 
+		</a4j:form>
+		<ui:include src="../edc/modalCdv.jspx"/>
+	</f:view>
+ </ui:define>
+</ui:composition>
+</html>

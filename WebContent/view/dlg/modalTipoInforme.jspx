@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<rich:modalPanel id="tipoInformeCcn" autosized="true" width="350" height="80">
+	<f:facet name="header" >
+			<h:outputText value="Generar Informe" />
+	</f:facet>
+	<rich:panel>	
+	<a4j:form id="modalTipoInformeCcn" ajaxSubmit="true">
+		<table align="center" cellspacing="10" border="0">
+			<tr>
+				<td align="left" width="80px"><h:outputText value="#{msg.tipoInformeDlg}"></h:outputText></td>
+				<td align="left"><h:selectOneMenu id="comboTipoInformeCcn"
+						value="#{dlgController.dlgForm.tipo}" style="width: 180px">
+						<f:selectItems value="#{dlgController.panelForm.comboTipoInforme}" />
+						<a4j:support event="onchange" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" width="80px"><h:outputText value="#{msg.unidadDlg}"></h:outputText></td>
+				<td align="left"><h:selectOneMenu id="comboUnidadModalCcn"
+						value="#{dlgController.dlgForm.tipo}" style="width: 180px">
+						<f:selectItems value="#{dlgController.panelForm.comboUnidad}" />
+						<a4j:support event="onchange" />
+					</h:selectOneMenu>
+				</td>
+			</tr>
+			<tr></tr><tr></tr>
+			<tr>
+				<td colspan="2">
+					<table align="center">
+						<tr>
+							<td width="100">
+								<a4j:commandButton id="aceptarDlg" style="width:80px;height:20px;"
+									oncomplete="Richfaces.hideModalPanel('tipoInformeCcn')"
+									reRender="tablaPanelDlgCcn" value="#{msg.aceptarDlg}"
+									actionListener="#{dlgController.generarInforme}" />
+							</td>
+						
+							<td><a4j:commandButton id="cancelarPerCcn" style="width:80px;height:20px;"
+									value="#{msg.cancelarDlg}"
+									onclick="Richfaces.hideModalPanel('tipoInformeCcn')" />
+							</td>							
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</a4j:form>
+	</rich:panel>
+</rich:modalPanel>
+</html>

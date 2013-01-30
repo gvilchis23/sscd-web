@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<head>
+	<title>Administrador de usuarios</title>
+
+</head>
+	  <ui:composition template="../template/layout.xhtml">
+			<ui:define name="body">
+				<f:view>
+					<a4j:form id="indexTablaUsuarios" style="background-color: #e6dfb5;" ajaxSubmit="true" >
+					  	<f:loadBundle basename="messages" var="msg" />
+		<fieldset>
+        	
+      
+			<table>
+			<tr><td>
+				<ui:include src="../adu/combosAdmonUsuarios.jspx"/>
+				</td></tr>
+		  	</table>
+	
+			<table align="center" width="100%">
+			<tr></tr><tr></tr><tr></tr>
+			<tr><td>
+				<ui:include src="../adu/tablaAdmonUsuarios.jspx"/>
+				</td></tr>
+		  	</table>
+		
+
+        <a4j:status onstart="#{rich:component('wait')}.show()"
+        onstop="#{rich:component('wait')}.hide()" />
+    
+    <!-- MODAL PANEL PARA MENSAJE DE ESPERA DESPUES DE UN EVENTO -->
+    
+    <rich:modalPanel id="wait" autosized="true" width="200" height="120"
+        moveable="false" resizeable="false">
+        <f:facet name="header">
+            <h:outputText value="Procesando" />
+        </f:facet>
+        <h:outputText value="Espere Por favor..." />
+    </rich:modalPanel>	
+    
+    <!-- FIN DE MODAL PANEL PARA MENSAJE DE ESPERA DESPUES DE UN EVENTO -->
+    
+    <!-- boton nuevo Usuario-->
+    <table border="0">	
+    <tr></tr>	
+    <tr></tr>
+    <tr></tr>
+    <tr>
+    <td>
+				<a4j:commandButton type="submit" value="Nuevo Usuario"  action="#{aduController.nuevoUsuarioNavigation}" />
+				</td>
+				</tr>
+			</table>	
+			
+			
+					</fieldset>
+				</a4j:form>
+			</f:view>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/ssdc/!svn/ver/1706/Implementacion/codigo/ssdc-web/src/test/java/mx/gob/imss/cia/ssdc/cdv/edc/presentacion/controller
+END
+TestEdcController.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/ssdc/!svn/ver/1643/Implementacion/codigo/ssdc-web/src/test/java/mx/gob/imss/cia/ssdc/cdv/edc/presentacion/controller/TestEdcController.java
+END
+TestAtencionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/ssdc/!svn/ver/1610/Implementacion/codigo/ssdc-web/src/test/java/mx/gob/imss/cia/ssdc/cdv/edc/presentacion/controller/TestAtencionController.java
+END
+TestServiciosController.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/ssdc/!svn/ver/1706/Implementacion/codigo/ssdc-web/src/test/java/mx/gob/imss/cia/ssdc/cdv/edc/presentacion/controller/TestServiciosController.java
+END
+TestInterrelacionadasController.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/ssdc/!svn/ver/1685/Implementacion/codigo/ssdc-web/src/test/java/mx/gob/imss/cia/ssdc/cdv/edc/presentacion/controller/TestInterrelacionadasController.java
+END

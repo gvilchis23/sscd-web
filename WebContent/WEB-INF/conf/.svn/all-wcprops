@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/ssdc/!svn/ver/1381/Implementacion/codigo/ssdc-web/WebContent/WEB-INF/conf
+END
+faces-managed-beans.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/ssdc/!svn/ver/1718/Implementacion/codigo/ssdc-web/WebContent/WEB-INF/conf/faces-managed-beans.xml
+END
+faces-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/ssdc/!svn/ver/1718/Implementacion/codigo/ssdc-web/WebContent/WEB-INF/conf/faces-config.xml
+END
+faces-config-backingbean.xml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/ssdc/!svn/ver/718/Implementacion/codigo/ssdc-web/WebContent/WEB-INF/conf/faces-config-backingbean.xml
+END
+faces-navigation.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/ssdc/!svn/ver/1381/Implementacion/codigo/ssdc-web/WebContent/WEB-INF/conf/faces-navigation.xml
+END

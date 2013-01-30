@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<rich:modalPanel id="tipoInforme" autosized="true">
+	<rich:panel header="Generando Reporte">
+		<a4j:form id="modalTipoInforme" ajaxSubmit="true">
+			<table align="center" cellspacing="10">
+				<tr>
+					<td><h:outputText value="#{msg.tipoInforme}"
+							style="width: 50px"></h:outputText>
+					</td>
+					<td><h:selectOneMenu id="comboTipoInforme"
+							value="#{pduController.pduForm.tipoInforme}" style="width: 150px">
+							<f:selectItems
+								value="#{pduController.panelForm.comboTipoInforme}" />
+							<a4j:support event="onchange" />
+						</h:selectOneMenu></td>
+
+				</tr>
+				<tr>
+					<td><h:panelGroup>
+							<a4j:commandButton id="aceptarPdu"
+								oncomplete="Richfaces.hideModalPanel('tipoInforme')"
+								reRender="tablaPanelTct" value="#{msg.aceptarDlg}"
+								actionListener="#{pduController.generarInforme}"
+								style="width: 100px; height: 24px;" />
+						</h:panelGroup>
+					</td>
+					<td><a4j:commandButton id="cancelarPer"
+							value="#{msg.cancelar}"
+							onclick="Richfaces.hideModalPanel('tipoInforme')"
+							style="width: 100px; height: 24px;" /></td>
+				</tr>
+			</table>
+		</a4j:form>
+	</rich:panel>
+</rich:modalPanel>
+</html>
